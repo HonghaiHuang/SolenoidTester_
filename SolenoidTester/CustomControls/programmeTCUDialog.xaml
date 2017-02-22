@@ -1,0 +1,55 @@
+﻿<mui:ModernDialog x:Class="SolenoidTester.CustomControls.programmeTCUDialog"
+                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                  xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+                  mc:Ignorable="d"
+                  Title="TCU刷写-文件选择" Width="548.725" Height="392.175">
+
+    <!-- Note: ModernDialog buttons are defined in the constructor of the code behind class -->
+
+    <Grid Width="400" Height="300">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="200" />
+            <RowDefinition Height="100" />
+        </Grid.RowDefinitions>
+        <Image Source="/Assets/img_firmburn.png" Stretch="None" />
+        <StackPanel Grid.Row="1" VerticalAlignment="Center">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Height="46" Width="380" Background="#4c000000">
+                <StackPanel.Resources>
+                    <Style TargetType="StackPanel">
+                        <Setter Property="Orientation" Value="Horizontal" />
+                        <Setter Property="Height" Value="23" />
+                        <Setter Property="Margin" Value="10,0,0,0" />
+                    </Style>
+                    <Style TargetType="Label" BasedOn="{StaticResource {x:Type Label}}">
+                        <Setter Property="Width" Value="105" />
+                        <Setter Property="FontSize" Value="15" />
+                        <Setter Property="Foreground" Value="#ffffffff" />
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                    </Style>
+                </StackPanel.Resources>
+                <StackPanel>
+                    <Label Content="TCU固件路径" Margin="0,-4,0,0" Height="27" />
+                    <TextBox x:Name="TextFileName" Width="210" />
+                    <Button x:Name="btn_ChooseFlashFile"  Click="fileButton_Click" Template="{DynamicResource ButtonFilePicker}" Margin="8,0,0,0" Height="23" VerticalAlignment="Top" />
+
+                </StackPanel>
+
+            </StackPanel>
+
+
+
+
+        </StackPanel>
+
+        <ProgressBar x:Name="progressbar"  Margin="15,100,185,-30" Height="30" Grid.Row="1" Maximum="100" Minimum="0" Value="0" />
+        <Button x:Name="btn_DlgHide"  Height="30" Content="退出" Foreground="White" Margin="318,100,5,-30" Grid.Row="1" Click="btn_DlgHide_Click" />
+        <Button x:Name="btn_FlashTcu" Content="刷写"  Height="30" Foreground="White" Margin="236,100,87,-30" Grid.Row="1" Click="btn_FlashTcu_Click" VerticalAlignment="Top" Background="#ff60a917" />
+        <Button x:Name="btn_Flashing" Content="刷写中" Height="30" Foreground="White" Margin="236,100,87,-30" Grid.Row="1" VerticalAlignment="Top" Visibility="Collapsed"/>
+
+
+    </Grid>
+
+</mui:ModernDialog>

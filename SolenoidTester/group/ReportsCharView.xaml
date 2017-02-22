@@ -1,0 +1,367 @@
+﻿<Window Name="CharWindow" x:Class="SolenoidTester.group.ReportsCharView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+             xmlns:core="clr-namespace:System;assembly=mscorlib"
+             xmlns:demo1="clr-namespace:SolenoidTester.group"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+              xmlns:local="clr-namespace:SolenoidTester.group"
+             mc:Ignorable="d" 
+             d:DesignHeight="900" d:DesignWidth="1400" Title="">
+
+
+
+
+    <Grid>
+        <Border Grid.Column="1" BorderThickness="1,0" BorderBrush="#FF333333" Background="#FF1B1B1C">
+            <StackPanel>
+                <StackPanel>
+                    <Rectangle Fill="#FF333333" Height="1" />
+                </StackPanel>
+                <DockPanel>
+                    <DockPanel.Resources>
+                        <ObjectDataProvider x:Key="myEnum" MethodName="GetValues" ObjectType="{x:Type core:Enum}">
+                            <ObjectDataProvider.MethodParameters>
+                            </ObjectDataProvider.MethodParameters>
+                        </ObjectDataProvider>
+                    </DockPanel.Resources>
+                </DockPanel>
+            </StackPanel>
+        </Border>
+        <StackPanel Margin="8,8,0,0" HorizontalAlignment="Left">
+            <StackPanel Background="#FF181818" Width="1386">
+                <WrapPanel Height="70" Margin="18,6,22,0">
+                    <WrapPanel.Resources>
+                        <Style TargetType="CheckBox" BasedOn="{StaticResource testChartOption--rpm}">
+                            <Setter Property="Margin" Value="0,7" />
+                        </Style>
+                    </WrapPanel.Resources>
+                    <CheckBox x:Name="_LineData_0_Check" IsChecked="False" Template="{DynamicResource CheckBoxControlTemplate1}" Style="{StaticResource testChartOption}" Click="_LineData_0_Check_Click" Width="105" >
+                        <TextBlock x:Name="_dataLine_Text0" Style="{StaticResource chartLabel}" Text="主油压(KPa)"  Foreground="#FF0063b1"/>
+
+                    </CheckBox>
+                    <TextBlock x:Name="_LineData_0_text" Width="60" FontSize="12"  Style="{StaticResource chartLabel}" Text="0"  Foreground="#FF0063b1" Height="17" />
+
+
+                    <CheckBox x:Name="_LineData_1_Check" IsChecked="False" Template="{DynamicResource CheckBoxControlTemplate2}" Style="{StaticResource testChartOption}" Click="_LineData_1_Check_Click"  Width="105">
+                        <TextBlock x:Name="_dataLine_Text1" Style="{StaticResource chartLabel}" Text="油压1(KPa)" Foreground="#FFc2700c"/>
+                    </CheckBox>
+                    <TextBlock x:Name="_LineData_1_text" Width="60" FontSize="12"  Style="{StaticResource chartLabel}" Text="0"  Foreground="#FFc2700c" Height="17" />
+
+                    <CheckBox x:Name="_LineData_2_Check" IsChecked="False" Template="{DynamicResource CheckBoxControlTemplate3}" Style="{StaticResource testChartOption}" Click="_LineData_2_Check_Click" Width="105">
+                        <TextBlock x:Name="_dataLine_Text2" Style="{StaticResource chartLabel}" Text="油压2" Foreground="#FF107c10"/>
+                    </CheckBox>
+                    <TextBlock x:Name="_LineData_2_text" Width="60" FontSize="12"  Style="{StaticResource chartLabel}" Text="0"  Foreground="#FF107c10" Height="17" />
+
+                    <CheckBox x:Name="_LineData_3_Check" IsChecked="False" Template="{DynamicResource CheckBoxControlTemplate4}" Style="{StaticResource testChartOption}" Click="_LineData_3_Check_Click"  Width="105">
+                        <TextBlock x:Name="_dataLine_Text3" Style="{StaticResource chartLabel}" Text="油压3" Foreground="#FFe300bc"/>
+                    </CheckBox>
+                    <TextBlock x:Name="_LineData_3_text" Width="60" FontSize="12"  Style="{StaticResource chartLabel}" Text="0"  Foreground="#FFe300bc" Height="17" />
+
+                    <CheckBox x:Name="_LineData_4_Check" IsChecked="False" Template="{DynamicResource CheckBoxControlTemplate5}" Style="{StaticResource testChartOption}" Click="_LineData_4_Check_Click" Width="105">
+                        <TextBlock x:Name="_dataLine_Text4" Style="{StaticResource chartLabel}" Text="油温" Foreground="#FF486860"/>
+                    </CheckBox>
+                    <TextBlock x:Name="_LineData_4_text" Width="60" FontSize="12"  Style="{StaticResource chartLabel}" Text="0"  Foreground="#FF486860" Height="17" />
+
+                    <CheckBox x:Name="_LineData_5_Check" IsChecked="False" Template="{DynamicResource CheckBoxControlTemplate6}" Style="{StaticResource testChartOption}" Click="_LineData_5_Check_Click" Width="105">
+                        <TextBlock x:Name="_dataLine_Text5" Style="{StaticResource chartLabel}" Text="传动比" Foreground="#FF00b7c3"/>
+                    </CheckBox>
+                    <TextBlock x:Name="_LineData_5_text" Width="60" FontSize="12"  Style="{StaticResource chartLabel}" Text="0"  Foreground="#FF00b7c3" Height="17" />
+
+                    <CheckBox x:Name="_LineData_6_Check" IsChecked="False" Template="{DynamicResource CheckBoxControlTemplate7}" Style="{StaticResource testChartOption}" Click="_LineData_6_Check_Click" Width="105">
+                        <TextBlock x:Name="_dataLine_Text6" Style="{StaticResource chartLabel}" Text="输入扭矩" Foreground="#FF881798"/>
+                    </CheckBox>
+                    <TextBlock x:Name="_LineData_6_text" Width="60" FontSize="12"  Style="{StaticResource chartLabel}" Text="0"  Foreground="#FF881798" Height="17" />
+
+                    <CheckBox x:Name="_LineData_7_Check" IsChecked="False" Template="{DynamicResource CheckBoxControlTemplate8}" Style="{StaticResource testChartOption}" Click="_LineData_7_Check_Click" Width="105">
+                        <TextBlock x:Name="_dataLine_Text7" Style="{StaticResource chartLabel}" Text="左输出扭矩" Foreground="#FF00cc6a"/>
+                    </CheckBox>
+                    <TextBlock x:Name="_LineData_7_text" Width="60" FontSize="12"  Style="{StaticResource chartLabel}" Text="0"  Foreground="#FF00cc6a" Height="17" />
+
+                    <CheckBox x:Name="_LineData_8_Check" IsChecked="False" Template="{DynamicResource CheckBoxControlTemplate9}" Style="{StaticResource testChartOption}" Click="_LineData_8_Check_Click" Width="105">
+                        <TextBlock x:Name="_dataLine_Text8" Style="{StaticResource chartLabel}" Text="右输出扭矩" Foreground="#FFff4343"/>
+                    </CheckBox>
+                    <TextBlock x:Name="_LineData_8_text" Width="60" FontSize="12"  Style="{StaticResource chartLabel}" Text="0"  Foreground="#FFff4343" Height="17" />
+
+                    <CheckBox x:Name="_LineData_9_Check" IsChecked="False" Template="{DynamicResource CheckBoxControlTemplate10}" Style="{StaticResource testChartOption}" Click="_LineData_9_Check_Click" Width="105">
+                        <TextBlock x:Name="_dataLine_Text9" Style="{StaticResource chartLabel}" Text="输入转速" Foreground="#FFc30052"/>
+                    </CheckBox>
+                    <TextBlock x:Name="_LineData_9_text" Width="60" FontSize="12"  Style="{StaticResource chartLabel}" Text="0"  Foreground="#FFc30052" Height="17" />
+
+                    <CheckBox x:Name="_LineData_10_Check" IsChecked="False" Template="{DynamicResource CheckBoxControlTemplate11}" Style="{StaticResource testChartOption}" Click="_LineData_10_Check_Click" Width="105">
+                        <TextBlock x:Name="_dataLine_Text10" Style="{StaticResource chartLabel}" Text="左输出转速" Foreground="#FF9a0089"/>
+                    </CheckBox>
+                    <TextBlock x:Name="_LineData_10_text" Width="60" FontSize="12"  Style="{StaticResource chartLabel}" Text="0"  Foreground="#FF9a0089" Height="17" />
+
+                    <CheckBox x:Name="_LineData_11_Check" IsChecked="False" Template="{DynamicResource CheckBoxControlTemplate12}" Style="{StaticResource testChartOption}" Click="_LineData_11_Check_Click" Width="105">
+                        <TextBlock x:Name="_dataLine_Text11" Style="{StaticResource chartLabel}" Text="右输出转速"  Foreground="#FF9a0089"/>
+                    </CheckBox>
+                    <TextBlock x:Name="_LineData_11_text" Width="60" FontSize="12"  Style="{StaticResource chartLabel}" Text="0"  Foreground="#FF9a0089" Height="17" />
+
+                    <CheckBox x:Name="_LineData_12_Check" IsChecked="False" Template="{DynamicResource CheckBoxControlTemplate13}" Style="{StaticResource testChartOption}" Click="_LineData_12_Check_Click" Width="105">
+                        <TextBlock x:Name="_dataLine_Text12" Style="{StaticResource chartLabel}" Text="输出转速(CAN)" Foreground="#FF847545" />
+                    </CheckBox>
+                    <TextBlock x:Name="_LineData_12_text" Width="60" FontSize="12"  Style="{StaticResource chartLabel}" Text="0"  Foreground="#FF847545" Height="17" />
+
+                    <CheckBox x:Name="_LineData_13_Check" IsChecked="False" Template="{DynamicResource CheckBoxControlTemplate14}" Style="{StaticResource testChartOption}" Click="_LineData_13_Check_Click" Width="105">
+                        <TextBlock x:Name="_dataLine_Text13" Style="{StaticResource chartLabel}" Text="输入转速(CAN)" Foreground="#FF68768a"/>
+                    </CheckBox>
+                    <TextBlock x:Name="_LineData_13_text" Width="60" FontSize="12"  Style="{StaticResource chartLabel}" Text="0"  Foreground="#FF68768a" Height="17" />
+
+                    <CheckBox x:Name="_LineData_14_Check" IsChecked="False" Template="{DynamicResource CheckBoxControlTemplate15}" Style="{StaticResource testChartOption}" Click="_LineData_14_Check_Checked" Width="105">
+                        <TextBlock x:Name="_dataLine_Text14" Style="{StaticResource chartLabel}" Text="需求档位" Foreground="#FF038387"/>
+                    </CheckBox>
+                    <TextBlock x:Name="_LineData_14_text" Width="60" FontSize="12"  Style="{StaticResource chartLabel}" Text="0"  Foreground="#FF038387" Height="17" />
+
+                    <CheckBox  x:Name="Time_Check" IsChecked="False"    Width="105">
+                        <TextBlock Style="{StaticResource chartLabel}" Text="时间轴"/>
+
+                    </CheckBox>
+                    <TextBlock x:Name="Time_text" Width="60" FontSize="12"  Style="{StaticResource chartLabel}" Text="0"  Foreground="White" Height="17" />
+
+                </WrapPanel>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel.Resources>
+                        <Style x:Key="chartFliterLabel" TargetType="{x:Type Label}" BasedOn="{StaticResource {x:Type Label}}">
+                            <Setter Property="FontSize" Value="12" />
+                            <Setter Property="Foreground" Value="#99FFFFFF" />
+                            <Setter Property="Margin" Value="0,2,0,-1" />
+                        </Style>
+                        <Style x:Key="chartFliterUnit" TargetType="{x:Type Label}" BasedOn="{StaticResource {x:Type Label}}">
+                            <Setter Property="Foreground" Value="#3FFFFFFF" />
+                            <Setter Property="FontSize" Value="12" />
+                            <Setter Property="FontFamily" Value="Segoe UI Semibold" />
+                            <Setter Property="Margin" Value="0,-12,0,0" />
+                            <Setter Property="RenderTransformOrigin" Value="0.5,0.5" />
+                            <Setter Property="HorizontalAlignment" Value="Right" />
+                            <Setter Property="RenderTransform">
+                                <Setter.Value>
+                                    <ScaleTransform ScaleY="0.8" />
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                        <Style x:Key="rangeSymbol" TargetType="{x:Type Rectangle}">
+                            <Setter Property="Width" Value="5" />
+                            <Setter Property="Height" Value="1" />
+                            <Setter Property="Fill" Value="#FFFFFFFF" />
+                            <Setter Property="Margin" Value="3" />
+                        </Style>
+                        <Style x:Key="inputPartition" TargetType="{x:Type Rectangle}">
+                            <Setter Property="Width" Value="1" />
+                            <Setter Property="Height" Value="28" />
+                            <Setter Property="Fill" Value="#FF333333" />
+                            <Setter Property="Margin" Value="10,0,0,0"/>
+                        </Style>
+                        <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
+                            <Setter Property="Height" Value="23"/>
+                        </Style>
+                        <Style TargetType="{x:Type StackPanel}" x:Key="labelWraper">
+                            <Setter Property="Margin" Value="5,0,5,0" />
+                        </Style>
+                        <Style TargetType="{x:Type TextBox}" x:Key="torqueBox" BasedOn="{StaticResource {x:Type TextBox}}">
+                            <Setter Property="Width" Value="40"/>
+                        </Style>
+                        <Style TargetType="{x:Type TextBox}" x:Key="pressureBox" BasedOn="{StaticResource {x:Type TextBox}}">
+                            <Setter Property="Width" Value="28"/>
+                        </Style>
+                        <Style TargetType="{x:Type TextBox}" x:Key="speedBox" BasedOn="{StaticResource {x:Type TextBox}}">
+                            <Setter Property="Width" Value="45"/>
+                        </Style>
+                        <Style TargetType="{x:Type TextBox}" x:Key="timeBox" BasedOn="{StaticResource {x:Type TextBox}}">
+                            <Setter Property="Width" Value="50" />
+                        </Style>
+                    </StackPanel.Resources>
+                    <StackPanel Orientation="Horizontal"/>
+                    <StackPanel Orientation="Horizontal" Width="460" RenderTransformOrigin="0.5,0.5">
+                        <StackPanel.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform AngleY="0.096"/>
+                                <RotateTransform/>
+                                <TranslateTransform Y="0.332"/>
+                            </TransformGroup>
+                        </StackPanel.RenderTransform>
+                        <StackPanel HorizontalAlignment="Left" Style="{StaticResource labelWraper}" Height="32">
+                            <Label Content="时间范围" Style="{StaticResource chartFliterLabel}" />
+                            <Label Content="Sec" Style="{StaticResource chartFliterUnit}" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <TextBox x:Name="timemin" Style="{StaticResource timeBox}" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"  Height="32" Width="90"/>
+                            <Rectangle Style="{StaticResource rangeSymbol}" />
+                            <TextBox x:Name="timemax" Style="{StaticResource timeBox}" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"  Height="32" Width="90"/>
+
+                        </StackPanel>
+                        <StackPanel Width="15"/>
+                        <Button x:Name="Time_Button" Content="确定" Width="83"   Height="32" FontSize="18" Click="Time_Button_Click"/>
+
+
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel HorizontalAlignment="Left" Style="{StaticResource labelWraper}">
+                            <Label Content="测试项目" Style="{StaticResource chartFliterLabel}" Height="32"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <ComboBox x:Name="GearCase1" Width="300" Height="32"  FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Text="全部"    >
+                                <ComboBoxItem Content="全部"/>
+                            </ComboBox>
+                            <!--<Rectangle Style="{StaticResource rangeSymbol}" />
+                            <ComboBox x:Name="GearCase2" Width="90" Height="32"  FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                            </ComboBox>-->
+
+
+                        </StackPanel>
+
+                    </StackPanel>
+
+                </StackPanel>
+                <StackPanel Width="15"/>
+
+                <Button x:Name="button" Content="确定" Width="83" Click="button_Click"  Height="32" FontSize="18"/>
+
+            </StackPanel>
+
+            <StackPanel Margin="0,10,0,0" Height="600">
+                <telerik:RadCartesianChart Name="char" Height="580"  Width="1372" Foreground="#FFFBFBFB">
+
+                    <telerik:RadCartesianChart.Resources>
+
+
+                        <telerik:LinearAxis x:Name="Pressure" HorizontalLocation="Left" Maximum="3000" Minimum="0" ElementBrush="White" Title="KPa" x:Key="pressureAxis" FontSize="10" MajorTickLength="1" />
+                        <telerik:LinearAxis x:Name="TorqueRange" HorizontalLocation="Left" Maximum="150" ElementBrush="White" Title="N.m" x:Key="torqueAxis" FontSize="10" Minimum="-150"  MajorTickLength="1"/>
+                        <telerik:LinearAxis Name="Speedmax" HorizontalLocation="Right" Maximum="2500" Minimum="0" ElementBrush="White" Title="RPM" x:Key="speedAxis" FontSize="10"/>
+                        <telerik:LinearAxis  HorizontalLocation="Right" Maximum="150" Minimum="0" ElementBrush="White" Title="℃" x:Key="TempAxis" FontSize="10"/>
+                        <telerik:LinearAxis HorizontalLocation="Right" Minimum="0" Maximum="12" ElementBrush="White" Title="档位" x:Key="gearAxis" FontSize="10" IsEnabled="False"  IsInverse="False" IsHitTestVisible="False" IsTabStop="False" IsStepRecalculationOnZoomEnabled="False" IsManipulationEnabled="False"/>
+
+                    </telerik:RadCartesianChart.Resources>
+
+                    <telerik:RadCartesianChart.Behaviors>
+                        <telerik:ChartPanAndZoomBehavior  ZoomMode="Both" PanMode="Both" DragMode="Zoom" MouseWheelMode="Zoom" />
+                        <telerik:ChartTrackBallBehavior ShowTrackInfo="False" Position="10,NaN" ShowIntersectionPoints="True" SnapMode="None" TrackInfoUpdated="ChartTrackBallBehavior_TrackInfoUpdated"/>
+
+                    </telerik:RadCartesianChart.Behaviors>
+                    <telerik:RadCartesianChart.EmptyContentTemplate>
+                        <DataTemplate>
+                            <telerik:RadBusyIndicator IsBusy="True" IsIndeterminate="True" BusyContent="读取数据中 ..." />
+                        </DataTemplate>
+                    </telerik:RadCartesianChart.EmptyContentTemplate>
+
+                    <telerik:RadCartesianChart.Grid>
+                        <telerik:CartesianChartGrid MajorLinesVisibility="Y" MajorYLineStyle="{StaticResource StripLinesStyle}" Opacity="0.1" />
+                    </telerik:RadCartesianChart.Grid>
+
+                    <telerik:RadCartesianChart.HorizontalAxis>
+                        <telerik:DateTimeContinuousAxis Name="horizontalAxis" 
+                                                MajorStepUnit="Second"
+                                                LabelFormat="mm:ss.fff" LabelInterval="1" MaximumTicks="10" MajorTickLength="5" LineThickness="0.1" ElementBrush="White"  >
+                            <telerik:DateTimeContinuousAxis.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="White" Offset="0"/>
+                                    <GradientStop Color="White" Offset="0.091"/>
+                                </LinearGradientBrush>
+                            </telerik:DateTimeContinuousAxis.Background>
+                        </telerik:DateTimeContinuousAxis>
+
+                        <!--<telerik:CategoricalAxis />-->
+                        <!--<telerik:DateTimeCategoricalAxis
+                                                LabelInterval="40"
+                                                LabelFormat="HH:mm:ss.f" FontFamily="Segoe UI"
+                                                PlotMode="OnTicks"
+                                                LineThickness="1"/>-->
+                    </telerik:RadCartesianChart.HorizontalAxis>
+
+
+
+
+                    <telerik:RadCartesianChart.VerticalAxis>
+                        <telerik:LinearAxis Maximum="12" HorizontalLocation="Right" Visibility="Collapsed" />
+                    </telerik:RadCartesianChart.VerticalAxis>
+
+
+
+                    <!--主油压-->
+                    <!--<telerik:LineSeries x:Name="_LineData_0_line" Visibility="Visible" Stroke="#FF0063b1" StrokeThickness="2" VerticalAxis="{StaticResource pressureAxis}" ValueBinding="Value" CategoryBinding="Category" ItemsSource="{Binding _LineData_0_Data}"/>-->
+                    <telerik:LineSeries Name="_LineData_0" ItemsSource="{Binding}" VerticalAxis="{StaticResource pressureAxis}" Stroke="#FF0063b1" StrokeThickness="2"   Visibility="Collapsed">
+                    </telerik:LineSeries>
+
+                    <!--油压1-->
+                    <!--<telerik:LineSeries x:Name="_LineData_1_line" Visibility="Collapsed"  Stroke="#FFc2700c" StrokeThickness="2" VerticalAxis="{StaticResource pressureAxis}" ValueBinding="Value" CategoryBinding="Category" ItemsSource="{Binding _LineData_1_Data}"/>-->
+                    <telerik:LineSeries Name="_LineData_1" ItemsSource="{Binding}" Stroke="#FFc2700c" StrokeThickness="2" VerticalAxis="{StaticResource pressureAxis}"  Visibility="Collapsed"/>
+
+
+                    <!--油压2-->
+                    <!--<telerik:LineSeries x:Name="_LineData_2_line" Visibility="Collapsed"  Stroke="#FF107c10" StrokeThickness="2" VerticalAxis="{StaticResource pressureAxis}" ValueBinding="Value" CategoryBinding="Category" ItemsSource="{Binding _LineData_2_Data}"/>-->
+                    <telerik:LineSeries Name="_LineData_2" ItemsSource="{Binding}" Stroke="#FF107c10" StrokeThickness="2" VerticalAxis="{StaticResource pressureAxis}"  Visibility="Collapsed"/>
+
+
+                    <!--油压3-->
+                    <!--<telerik:LineSeries x:Name="_LineData_3_line" Visibility="Collapsed"  Stroke="#FFe300bc" StrokeThickness="2" VerticalAxis="{StaticResource pressureAxis}" ValueBinding="Value" CategoryBinding="Category" ItemsSource="{Binding _LineData_3_Data}"/>-->
+                    <telerik:LineSeries Name="_LineData_3" ItemsSource="{Binding}" Stroke="#FFe300bc" StrokeThickness="2" VerticalAxis="{StaticResource pressureAxis}"  Visibility="Collapsed"/>
+
+
+                    <!--油压4-->
+                    <!--<telerik:LineSeries x:Name="p_4_line" Visibility="Collapsed"   Stroke="#FF486860" StrokeThickness="2" VerticalAxis="{StaticResource pressureAxis}" ValueBinding="Value" CategoryBinding="Category" ItemsSource="{Binding P_4_Data}"/>-->
+                    <telerik:LineSeries Name="_LineData_4" ItemsSource="{Binding}" Stroke="#FF486860" StrokeThickness="2" VerticalAxis="{StaticResource TempAxis}"  Visibility="Collapsed"/>
+
+
+                    <!--油压5-->
+                    <!--<telerik:LineSeries x:Name="p_5_line" Visibility="Collapsed"  Stroke="#FF00b7c3" StrokeThickness="2" VerticalAxis="{StaticResource pressureAxis}" ValueBinding="Value" CategoryBinding="Category" ItemsSource="{Binding P_5_Data}"/>-->
+                    <telerik:LineSeries Name="_LineData_5" ItemsSource="{Binding}" Stroke="#FF00b7c3" StrokeThickness="2" VerticalAxis="{StaticResource pressureAxis}"  Visibility="Collapsed"/>
+
+
+                    <!--输入扭矩-->
+                    <!--<telerik:LineSeries x:Name="_LineData_6_line" Visibility="Collapsed"  Stroke="#FF881798" StrokeThickness="2" VerticalAxis="{StaticResource torqueAxis}" ValueBinding="Value" CategoryBinding="Category" ItemsSource="{Binding _LineData_6_Data}"/>-->
+                    <telerik:LineSeries Name="_LineData_6" ItemsSource="{Binding}" Stroke="#FF881798" StrokeThickness="2" VerticalAxis="{StaticResource torqueAxis}"  Visibility="Collapsed"/>
+
+
+                    <!--左输出扭矩-->
+                    <!--<telerik:LineSeries x:Name="_LineData_7_line" Visibility="Collapsed"  Stroke="#FF00cc6a" StrokeThickness="2" VerticalAxis="{StaticResource torqueAxis}" ValueBinding="Value" CategoryBinding="Category" ItemsSource="{Binding _LineData_7_Data}"/>-->
+                    <telerik:LineSeries Name="_LineData_7" ItemsSource="{Binding}" Stroke="#FF00cc6a" StrokeThickness="2" VerticalAxis="{StaticResource torqueAxis}"  Visibility="Collapsed"/>
+
+
+                    <!--右输出扭矩-->
+                    <!--<telerik:LineSeries x:Name="_LineData_8_line" Visibility="Collapsed" Stroke="#FFff4343" StrokeThickness="2" VerticalAxis="{StaticResource torqueAxis}" ValueBinding="Value" CategoryBinding="Category" ItemsSource="{Binding _LineData_8_Data}"/>-->
+                    <telerik:LineSeries Name="_LineData_8" ItemsSource="{Binding}" Stroke="#FFff4343" StrokeThickness="2" VerticalAxis="{StaticResource torqueAxis}"  Visibility="Collapsed"/>
+
+
+                    <!--输入转速-->
+                    <!--<telerik:LineSeries x:Name="_LineData_9_line" Visibility="Visible" Stroke="#FFc30052" StrokeThickness="2" VerticalAxis="{StaticResource speedAxis}" ValueBinding="Value" CategoryBinding="Category" ItemsSource="{Binding _LineData_9_Data}"/>-->
+                    <telerik:LineSeries Name="_LineData_9" ItemsSource="{Binding}"  Stroke="#FFc30052" StrokeThickness="2" VerticalAxis="{StaticResource speedAxis}"  Visibility="Collapsed"/>
+
+                    <!--左输出转速-->
+                    <!--<telerik:LineSeries x:Name="_LineData_10_line" Visibility="Visible" Stroke="#FF9a0089" StrokeThickness="2" VerticalAxis="{StaticResource speedAxis}" ValueBinding="Value" CategoryBinding="Category" ItemsSource="{Binding _LineData_10_Data}"/>-->
+                    <telerik:LineSeries Name="_LineData_10" ItemsSource="{Binding}" Stroke="#FF9a0089" StrokeThickness="2" VerticalAxis="{StaticResource speedAxis}"  Visibility="Collapsed"/>
+
+
+                    <!--右输出转速-->
+                    <!--<telerik:LineSeries x:Name="_LineData_11_line" Visibility="Collapsed" Stroke="#FF9a0089" StrokeThickness="2" VerticalAxis="{StaticResource speedAxis}" ValueBinding="Value" CategoryBinding="Category" ItemsSource="{Binding _LineData_11_Data}"/>-->
+                    <telerik:LineSeries Name="_LineData_11" ItemsSource="{Binding}" Stroke="#FF5d5a58" StrokeThickness="2" VerticalAxis="{StaticResource speedAxis}"  Visibility="Collapsed"/>
+
+
+                    <!--输出转速(CAN)-->
+                    <!--<telerik:LineSeries x:Name="_LineData_12_line" Visibility="Collapsed" Stroke="#FF847545" StrokeThickness="2" VerticalAxis="{StaticResource speedAxis}" ValueBinding="Value" CategoryBinding="Category" ItemsSource="{Binding _LineData_12_Data}"/>-->
+                    <telerik:LineSeries Name="_LineData_12" ItemsSource="{Binding}" Stroke="#FF847545" StrokeThickness="2" VerticalAxis="{StaticResource speedAxis}"  Visibility="Collapsed"/>
+
+
+                    <!--输入转速(CAN)-->
+                    <!--<telerik:LineSeries x:Name="_LineData_13_line" Visibility="Collapsed" Stroke="#FF68768a" StrokeThickness="2" VerticalAxis="{StaticResource speedAxis}" ValueBinding="Value" CategoryBinding="Category" ItemsSource="{Binding _LineData_13_Data}"/>-->
+                    <telerik:LineSeries Name="_LineData_13" ItemsSource="{Binding}" Stroke="#FF68768a" StrokeThickness="2" VerticalAxis="{StaticResource speedAxis}"  Visibility="Collapsed"/>
+
+
+                    <!--需求档位-->
+                    <!--<telerik:LineSeries x:Name="_LineData_14_line" Visibility="Collapsed" Stroke="#FF038387" StrokeThickness="2" VerticalAxis="{StaticResource gearAxis}" ValueBinding="Value" CategoryBinding="Category" ItemsSource="{Binding _LineData_14_Data}"/>-->
+                    <telerik:LineSeries   IsEnabled="False" Name="_LineData_14" ItemsSource="{Binding}" Stroke="#FF038387" StrokeThickness="2" VerticalAxis="{StaticResource gearAxis}"  Visibility="Collapsed"/>
+
+                </telerik:RadCartesianChart>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

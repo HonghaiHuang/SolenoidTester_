@@ -1,0 +1,223 @@
+﻿<UserControl x:Class="SolenoidTester.group.SignalsDefinedPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+             mc:Ignorable="d"
+             d:DesignHeight="900" d:DesignWidth="1440">
+    <Grid>
+        <!--主内容-->
+        <WrapPanel Width="auto" Orientation="Vertical" Margin="10,46,0,0" Height="562" VerticalAlignment="Top">
+            <WrapPanel.Resources>
+                <Style x:Key="placeHolder" TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type TextBox}">
+                                <Grid>
+                                    <TextBox Text="{Binding Path=Text,
+                                                RelativeSource={RelativeSource TemplatedParent},
+                                                Mode=TwoWay,
+                                                UpdateSourceTrigger=PropertyChanged}"
+                                 x:Name="textSource"
+                                 Background="Transparent"
+                                 Panel.ZIndex="2" Width="30" />
+                                    <TextBox Text="{TemplateBinding Tag}" Background="{TemplateBinding Background}" Panel.ZIndex="1">
+                                        <TextBox.Style>
+                                            <Style TargetType="{x:Type TextBox}">
+                                                <Setter Property="Foreground" Value="Transparent" />
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Path=Text, Source={x:Reference textSource}}" Value="">
+                                                        <Setter Property="Foreground" Value="LightGray" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBox.Style>
+                                    </TextBox>
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </WrapPanel.Resources>
+            <!--标题-->
+            <Border Style="{StaticResource interfaceItemWp}">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="                                           " />
+                    <TextBlock Style="{StaticResource interfaceItemLabel}" Text="实时值" Width="109" />
+                    <TextBlock Style="{StaticResource interfaceItemLabel}" Text="K值" Width="96" />
+                    <TextBlock Style="{StaticResource interfaceItemLabel}" Text="B值" Width="35" />
+                </StackPanel>
+            </Border>
+
+            <!--接口定义处-->
+            <Border Style="{StaticResource interfaceItemWp}">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource interfaceItemLabel}" Text="P_TCC" />
+                    <StackPanel Orientation="Horizontal">
+                        <!--Tag为该项现保存值-->
+                        <TextBox x:Name="textBoxTP_TCC"  Width="80" Text="" IsReadOnly="True" />
+                        <TextBlock Style="{StaticResource signalsDefinedItemBaseTxt}" Text="    " />
+                        <TextBox x:Name="P_TCC_K" Width="50" InputMethod.PreferredImeState="Off" InputMethod.IsInputMethodEnabled="False" PreviewTextInput="TB_TO1_K_PreviewTextInput" />
+                        <TextBlock Style="{StaticResource signalsDefinedItemTxt}" Text="X+" />
+                        <TextBox x:Name="P_TCC_B" Width="50" InputMethod.PreferredImeState="Off" InputMethod.IsInputMethodEnabled="False" PreviewTextInput="TB_TO1_B_PreviewTextInput" />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+            <!--接口定义处-->
+            <Border Style="{StaticResource interfaceItemWp}">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource interfaceItemLabel}" Text="P_Line" />
+                    <StackPanel Orientation="Horizontal">
+                        <!--Tag为该项现保存值-->
+                        <TextBox x:Name="textBoxP_Line"  Width="80" Text="" IsReadOnly="True" />
+                        <TextBlock Style="{StaticResource signalsDefinedItemBaseTxt}" Text="    " />
+                        <TextBox x:Name="P_Line_K" Width="50" InputMethod.PreferredImeState="Off" InputMethod.IsInputMethodEnabled="False" PreviewTextInput="TB_TO2_K_PreviewTextInput" />
+                        <TextBlock Style="{StaticResource signalsDefinedItemTxt}" Text="X+" />
+                        <TextBox x:Name="P_Line_B" Width="50" InputMethod.PreferredImeState="Off" InputMethod.IsInputMethodEnabled="False" PreviewTextInput="TB_TO2_B_PreviewTextInput" />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+            <!--接口定义处-->
+            <Border Style="{StaticResource interfaceItemWp}">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource interfaceItemLabel}" Text="P_C1234" />
+                    <StackPanel Orientation="Horizontal">
+                        <!--Tag为该项现保存值-->
+                        <TextBox x:Name="textBoxP_C1234"  Width="80" Text="" IsReadOnly="True" />
+                        <TextBlock Style="{StaticResource signalsDefinedItemBaseTxt}" Text="    " />
+                        <TextBox x:Name="P_C1234_K" Width="50" InputMethod.PreferredImeState="Off" InputMethod.IsInputMethodEnabled="False" PreviewTextInput="TB_PL_K_PreviewTextInput" />
+                        <TextBlock Style="{StaticResource signalsDefinedItemTxt}" Text="X+" />
+                        <TextBox x:Name="P_C1234_B" Width="50" InputMethod.PreferredImeState="Off" InputMethod.IsInputMethodEnabled="False" PreviewTextInput="TB_PL_B_PreviewTextInput" />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+            <!--接口定义处-->
+            <Border Style="{StaticResource interfaceItemWp}">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource interfaceItemLabel}" Text="P_CB26" />
+                    <StackPanel Orientation="Horizontal">
+                        <!--Tag为该项现保存值-->
+                        <TextBox x:Name="textBoxP_CB26"  Width="80" Text="" IsReadOnly="True" />
+                        <TextBlock Style="{StaticResource signalsDefinedItemBaseTxt}" Text="    " />
+                        <TextBox x:Name="P_CB26_K" Width="50" InputMethod.PreferredImeState="Off" InputMethod.IsInputMethodEnabled="False" PreviewTextInput="TB_PC_K_PreviewTextInput" />
+                        <TextBlock Style="{StaticResource signalsDefinedItemTxt}" Text="X+" />
+                        <TextBox x:Name="P_CB26_B" Width="50" InputMethod.PreferredImeState="Off" InputMethod.IsInputMethodEnabled="False" PreviewTextInput="TB_PC_B_PreviewTextInput" />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+            <!--接口定义处-->
+            <Border Style="{StaticResource interfaceItemWp}">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource interfaceItemLabel}" Text="P_C35R" />
+                    <StackPanel Orientation="Horizontal">
+                        <!--Tag为该项现保存值-->
+                        <TextBox x:Name="textBoxP_C35R"  Width="80" Text="" IsReadOnly="True" />
+                        <TextBlock Style="{StaticResource signalsDefinedItemBaseTxt}" Text="    " />
+                        <TextBox x:Name="P_C35R_K" Width="50" InputMethod.PreferredImeState="Off" InputMethod.IsInputMethodEnabled="False" PreviewTextInput="TB_P1_K_PreviewTextInput" />
+                        <TextBlock Style="{StaticResource signalsDefinedItemTxt}" Text="X+" />
+                        <TextBox x:Name="P_C35R_B" Width="50" InputMethod.PreferredImeState="Off" InputMethod.IsInputMethodEnabled="False" PreviewTextInput="TB_P1_B_PreviewTextInput" />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+            <!--接口定义处-->
+            <Border Style="{StaticResource interfaceItemWp}">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource interfaceItemLabel}" Text="P_C456" />
+                    <StackPanel Orientation="Horizontal">
+                        <!--Tag为该项现保存值-->
+                        <TextBox x:Name="textBoxP_C456"  Width="80" Text="" IsReadOnly="True" />
+                        <TextBlock Style="{StaticResource signalsDefinedItemBaseTxt}" Text="    " />
+                        <TextBox x:Name="P_C456_K" Width="50" InputMethod.PreferredImeState="Off" InputMethod.IsInputMethodEnabled="False" PreviewTextInput="TB_MC_K_PreviewTextInput" />
+                        <TextBlock Style="{StaticResource signalsDefinedItemTxt}" Text="X+" />
+                        <TextBox x:Name="P_C456_B" Width="50" InputMethod.PreferredImeState="Off" InputMethod.IsInputMethodEnabled="False" PreviewTextInput="TB_MC_B_PreviewTextInput" />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <!--标题-->
+            <Border Style="{StaticResource interfaceItemWp}">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="                                           " />
+                    <TextBlock Style="{StaticResource interfaceItemLabel}" Text="实时值" Width="109" />
+                    <TextBlock Style="{StaticResource interfaceItemLabel}" Text="K值" Width="96" />
+                    <TextBlock Style="{StaticResource interfaceItemLabel}" Text="B值" Width="35" />
+                </StackPanel>
+            </Border>
+
+
+
+            <!--接口定义处-->
+            <Border Style="{StaticResource interfaceItemWp}">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource interfaceItemLabel}" Text="P_Source" />
+                    <StackPanel Orientation="Horizontal">
+                        <!--Tag为该项现保存值-->
+                        <TextBox x:Name="textBoxP_Source"  Width="80" Text="" IsReadOnly="True" />
+                        <TextBlock Style="{StaticResource signalsDefinedItemBaseTxt}" Text="    " />
+                        <TextBox x:Name="P_Source_K" Width="50" InputMethod.PreferredImeState="Off" InputMethod.IsInputMethodEnabled="False" PreviewTextInput="TB_TI_K_PreviewTextInput" />
+                        <TextBlock Style="{StaticResource signalsDefinedItemTxt}" Text="X+" />
+                        <TextBox x:Name="P_Source_B" Width="50" InputMethod.PreferredImeState="Off" InputMethod.IsInputMethodEnabled="False" PreviewTextInput="TB_TI_B_PreviewTextInput" />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+            <!--接口定义处-->
+            <Border Style="{StaticResource interfaceItemWp}">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource interfaceItemLabel}" Text="P_Shift" />
+                    <TextBox x:Name="textBoxP_Shift"  Width="80" Text="" IsReadOnly="True" />
+                    <TextBlock Style="{StaticResource signalsDefinedItemBaseTxt}" Text="    " />
+                    <TextBox x:Name="P_Shift_K" Width="50" InputMethod.PreferredImeState="Off" InputMethod.IsInputMethodEnabled="False" PreviewTextInput="TB_TC_K_PreviewTextInput" />
+                    <TextBlock Style="{StaticResource signalsDefinedItemTxt}" Text="X+" />
+                    <TextBox x:Name="P_Shift_B" Width="50" InputMethod.PreferredImeState="Off" InputMethod.IsInputMethodEnabled="False" PreviewTextInput="TB_TC_B_PreviewTextInput" />
+                </StackPanel>
+            </Border>
+            <!--接口定义处-->
+            <Border Style="{StaticResource interfaceItemWp}">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource interfaceItemLabel}" Text="Temperature" />
+                    <TextBox x:Name="textBoxTemperature"  Width="80" Text="" IsReadOnly="True" />
+                    <TextBlock Style="{StaticResource signalsDefinedItemBaseTxt}" Text="    " />
+                    <TextBox x:Name="Temperature_K" Width="50" InputMethod.PreferredImeState="Off" InputMethod.IsInputMethodEnabled="False" PreviewTextInput="TB_P2_K_PreviewTextInput" />
+                    <TextBlock Style="{StaticResource signalsDefinedItemTxt}" Text="X+" />
+                    <TextBox x:Name="Temperature_B" Width="50" InputMethod.PreferredImeState="Off" InputMethod.IsInputMethodEnabled="False" PreviewTextInput="TB_P2_B_PreviewTextInput" />
+                </StackPanel>
+            </Border>
+
+            <!--接口定义处-->
+            <Border Style="{StaticResource interfaceItemWp}">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource interfaceItemLabel}" Text="InputSpeed" />
+                    <StackPanel Orientation="Horizontal">
+                        <!--Tag为该项现保存值-->
+                        <TextBox x:Name="textBoxInputSpeed"  Width="80" Text="" IsReadOnly="True" />
+                        <TextBlock Style="{StaticResource signalsDefinedItemBaseTxt}" Text="    " />
+                        <StackPanel Orientation="Horizontal">
+                            <!--Tag为该项现保存值-->
+                            <TextBox x:Name="InputSpeed_K" Width="50" InputMethod.PreferredImeState="Off" InputMethod.IsInputMethodEnabled="False" PreviewTextInput="TB_SO1_K_PreviewTextInput" />
+                            <TextBlock Style="{StaticResource signalsDefinedItemTxt}" Text="齿/圈" />
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+            <!--接口定义处-->
+            <Border Style="{StaticResource interfaceItemWp}">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource interfaceItemLabel}" Text="OutputSpeed" />
+                    <StackPanel Orientation="Horizontal">
+                        <!--Tag为该项现保存值-->
+                        <TextBox x:Name="textBoxOutputSpeed"  Width="80" Text="" IsReadOnly="True" />
+                        <TextBlock Style="{StaticResource signalsDefinedItemBaseTxt}" Text="    " />
+                        <StackPanel Orientation="Horizontal">
+                            <!--Tag为该项现保存值-->
+                            <TextBox x:Name="OutputSpeed_K" Width="50" InputMethod.PreferredImeState="Off" InputMethod.IsInputMethodEnabled="False" PreviewTextInput="TB_SI_K_PreviewTextInput" />
+                            <TextBlock Style="{StaticResource signalsDefinedItemTxt}" Text="齿/圈" />
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </WrapPanel>
+        <Button x:Name="ApplicationBt" Content="应  用" Template="{DynamicResource ButtonControlTemplate--start}" VerticalAlignment="Bottom" HorizontalAlignment="Right" FontSize="18" Foreground="#FFFFFFFF" Padding="0,-11,0,0" Margin="0,0,146,10" Click="Button_Click" />
+        <Button x:Name="ResetBt" Content="重  置" Template="{DynamicResource ButtonControlTemplate--start}" VerticalAlignment="Bottom" HorizontalAlignment="Right" FontSize="18" Foreground="#FFFFFFFF" Padding="0,-11,0,0" Margin="0,0,363,10" Click="ResetButton_Click" />
+    </Grid>
+</UserControl>

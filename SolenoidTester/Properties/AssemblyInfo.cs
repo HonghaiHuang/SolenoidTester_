@@ -10,7 +10,7 @@ using System.Windows;
 [assembly: AssemblyTitle("SolenoidTester")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("广州市富元电子有限公司")]
 [assembly: AssemblyProduct("SolenoidTester")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]

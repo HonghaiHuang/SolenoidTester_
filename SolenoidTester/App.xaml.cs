@@ -13,5 +13,30 @@ namespace SolenoidTester
     /// </summary>
     public partial class App : Application
     {
+
+
+        public App()
+        {
+
+        }
+        ~App()
+        {
+
+        }
+        /// <summary>
+        /// 实例化数据处理模块
+        /// </summary>
+        public DataProcess dataPro = new DataProcess();
+
+        /// <summary>
+        /// 存储测试信息
+        /// </summary>
+        public string[] _TestInformation = new string[9];
+
+        public bool IsNormallyClosedWindow = false;
+
+        public string FilePath = "";
+
+
     }
 }

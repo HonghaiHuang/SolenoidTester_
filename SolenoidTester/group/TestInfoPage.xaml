@@ -1,0 +1,178 @@
+﻿<UserControl x:Class="SolenoidTester.group.TestInfoPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+             mc:Ignorable="d" 
+             d:DesignHeight="900" d:DesignWidth="1300">
+
+    <Grid Style="{StaticResource ContentRoot}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,50,0,0" Width="1040" Height="650" >
+        <StackPanel HorizontalAlignment="Left" >
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                <Rectangle Fill="#ff60a917" Height="40" Width="4" Margin="0,0,16,0" />
+                <StackPanel>
+                    <TextBlock Text="电磁阀测试表单" Style="{StaticResource formTitle}" />
+                    <TextBlock Text="请在进行测试前补充全部信息" Style="{StaticResource formSubTitle}" />
+                </StackPanel>
+            </StackPanel>
+            <Grid Background="#ff4e4f4c" Height="470" Width="450">
+                <StackPanel Orientation="Vertical" Margin="43,40,0,0">
+                    <StackPanel.Resources>
+                        <Style TargetType="StackPanel">
+                            <Setter Property="Orientation" Value="Horizontal" />
+                            <Setter Property="Margin" Value="0,0,0,12" />
+                        </Style>
+                        <Style TargetType="Label" BasedOn="{StaticResource {x:Type Label}}">
+                            <Setter Property="Width" Value="118" />
+                            <Setter Property="FontSize" Value="15" />
+                            <Setter Property="Foreground" Value="#ffffffff" />
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                        </Style>
+                    </StackPanel.Resources>
+                    
+                    
+                    <StackPanel>
+                        <Label Content="操作者" />
+                        <TextBox x:Name="TextOperator" IsReadOnly="True" Width="210" Text="范文柱" IsEnabled="False"/>
+                    </StackPanel>
+
+                    <StackPanel>
+                        <Label Content="报告编号" VerticalAlignment="Stretch" />
+                        <TextBox x:Name="Text_ReportNo" Width="210"  IsEnabled="False"/>
+                    </StackPanel>
+                    <StackPanel>
+                        <Label Content="广播码" />
+                        <TextBox x:Name="Text_PartNumber" Width="210" IsEnabled="True"/>
+                    </StackPanel>
+                    <StackPanel>
+                        <Label Content="刷写软件号" />
+                        <TextBox x:Name="TextNoFlashingSoftware" Width="210" IsEnabled="False"/>
+                    </StackPanel>
+
+                    <StackPanel>
+                        <Label Content="商用状态" />
+                        <TextBox x:Name="TextCommercialStatus" Width="210"  IsEnabled="False"/>
+                    </StackPanel>
+                    <StackPanel>
+                        <Label Content="制造追踪码" />
+                        <TextBox x:Name="TextManufacturingTrackingCode" Width="210"  IsReadOnly="False"  TextChanged="TextManufacturingTrackingCode_TextChanged"/>
+                    </StackPanel>
+                    <StackPanel>
+                        <Label Content="VIN" />
+                        <TextBox x:Name="TextVIN" Width="210" IsReadOnly="True" />
+                    </StackPanel>
+                    <StackPanel>
+                        <Label Content="配置文件" />
+                        <ComboBox x:Name="TestFile" SelectedIndex="0" Width="210" >
+                            <ComboBoxItem>标准测试</ComboBoxItem>
+                            <ComboBoxItem>单体测试</ComboBoxItem>
+                            <ComboBoxItem>压力开关测试</ComboBoxItem>
+
+                        </ComboBox>
+                    </StackPanel>
+
+                    <Rectangle Fill="#19FFFFFF" Height="1" Width="370" Margin="0,23,0,35" HorizontalAlignment="Left" />
+                    <StackPanel>
+                        <TextBox x:Name="TextVINCode" Width="238" Height="25" Padding="0,0,0,0" Visibility="Visible"/>
+                        <ProgressBar x:Name="BarFileName" Width="238" Height="25" Padding="0,0,0,0" Visibility="Collapsed" Maximum="100" Minimum="0" Value="30"/>
+                        <Button x:Name="btn_FlashVIN" Template="{DynamicResource ButtonControl--start}" Margin="10,0,0,0" Content="刷写VIN" Click="btn_FlashVIN_Click" />
+                    </StackPanel>
+                </StackPanel>
+                <Rectangle HorizontalAlignment="Right" Fill="#ff151515" Width="2" Height="390" Margin="0,10,-2,70" />
+            </Grid>
+        </StackPanel>
+        <Grid Background="#ff1a1a1a" Height="469" Width="595" Margin="0,57,-10,0" VerticalAlignment="Top" HorizontalAlignment="Right">
+            <StackPanel Margin="44,30,44,0" Orientation="Horizontal">
+                <StackPanel Orientation="Vertical" Width="334">
+                    <StackPanel.Resources>
+                        <Style TargetType="StackPanel">
+                            <Setter Property="Orientation" Value="Horizontal" />
+                            <Setter Property="Margin" Value="0,0,0,12" />
+                        </Style>
+                        <Style TargetType="Label" BasedOn="{StaticResource {x:Type Label}}">
+                            <Setter Property="Width" Value="128" />
+                            <Setter Property="FontSize" Value="15" />
+                            <Setter Property="Foreground" Value="#ff909090" />
+                            <Setter Property="HorizontalAlignment" Value="Right" />
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                        </Style>
+                        <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+                            <Setter Property="Background" Value="Transparent" />
+                            <Setter Property="BorderThickness" Value="0,0,0,1" />
+                            <Setter Property="IsReadOnly" Value="True" />
+                            <Setter Property="IsEnabled" Value="False" />
+                        </Style>
+
+
+
+                    </StackPanel.Resources>
+
+
+
+                    <StackPanel>
+                        <StackPanel>
+                            <TextBlock Text="故障码读取及清除" Style="{StaticResource formTitle}" />
+                        </StackPanel>
+
+
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Height="280">
+                        <StackPanel Width="120">
+
+                            <Grid Width="120">
+                                <TextBlock Text="故障码列表" FontSize="15" Foreground="#ffffffff" Margin="0,0,0,240" />
+                                <ListBox x:Name="listBoxFaultCode" Margin="0,30,0,0"/>
+                            </Grid>
+
+                            <ScrollViewer Height="280"/>
+                        </StackPanel>
+                        <Rectangle Fill="#ff313131" Width="1" Height="300" Margin="5,0,20,0" />
+                        <StackPanel Width="320">
+                            <Grid Width="120">
+                                <TextBlock Text="故障分析" FontSize="15" Foreground="#ffffffff" Margin="0,0,0,240" />
+
+                                <TextBlock x:Name="textFaultCodeExplan" Text="" TextWrapping="Wrap" Margin="0,30,0,0"/>
+
+
+                            </Grid>
+
+                        </StackPanel>
+                    </StackPanel>
+
+                    <Rectangle />
+
+                </StackPanel>
+                <StackPanel Margin="30,0,0,0">
+                    <Button x:Name="btn_ReadTI" Content="读取TCU信息" Width="130" FontSize="12" Margin="0,0,0,14" Template="{DynamicResource ButtonHighLight}" Click="Button_Click_1"/>
+                    <Rectangle Fill="#ff313131" Height="1" Width="140" Margin="0,0,0,14" />
+                    <Button x:Name="btn_ReadFC"  Content="读取TCU故障码" Width="130" FontSize="12" Margin="0,0,0,14" Click="btn_ReadFC_Click" Visibility="Visible"/>
+                    <Button x:Name="btn_CleakFC"  Content="清除故障码" Width="130" FontSize="12" Margin="0,0,0,14" Visibility="Collapsed" Click="btn_CleakFC_Click"/>
+                    <Button x:Name="btn_ReadFT" Content="刷写TCU" Width="130" FontSize="12" Margin="0,0,0,14" Click="tcuProgrammeDialog_Click" />
+                </StackPanel>
+            </StackPanel>
+            <Rectangle Fill="#ff60a917" HorizontalAlignment="Right" Height="380" Width="4" />
+            <Rectangle Fill="#ff60a917" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="585,0,0,0" Height="60" Width="10" RenderTransformOrigin="0.5,0.5" >
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleY="-45"/>
+                        <RotateTransform/>
+                        <TranslateTransform Y="-62"/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+            </Rectangle>
+            <Rectangle Fill="#ff60a917" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,0,0" Height="60" Width="10" RenderTransformOrigin="0.5,0.5" >
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleY="45"/>
+                        <RotateTransform/>
+                        <TranslateTransform Y="-7"/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+            </Rectangle>
+        </Grid>
+        <Button x:Name="StartTest" Content="进入测试" Template="{DynamicResource ButtonControlTemplate--start}" VerticalAlignment="Bottom" HorizontalAlignment="Right" FontSize="18" Foreground="#FFFFFFFF" Padding="0,-11,0,0" Margin="0,0,-19,0" IsEnabled="False"  Command = "mui:LinkCommands.NavigateLink" CommandParameter = "/group/Tests/SingleTest.xaml" Click="StartTest_Click"/>
+    </Grid>
+</UserControl>

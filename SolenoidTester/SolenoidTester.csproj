@@ -24,6 +24,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -35,8 +36,37 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ExcelReport">
+      <HintPath>bin\Debug\dll\ExcelReport.dll</HintPath>
+    </Reference>
+    <Reference Include="FirstFloor.ModernUI">
+      <HintPath>..\packages\ModernUI.WPF.1.0.9\lib\net45\FirstFloor.ModernUI.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>bin\Debug\dll\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common">
+      <HintPath>bin\Debug\dll\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data">
+      <HintPath>bin\Debug\dll\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ObjectBuilder">
+      <HintPath>bin\Debug\dll\Microsoft.Practices.ObjectBuilder.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\dll\MySql.Data.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -46,29 +76,103 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="Telerik.Windows.Controls, Version=2016.1.217.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Telerik\UI for WPF Q1 2016\Binaries\WPF45\Telerik.Windows.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Chart, Version=2016.1.217.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Controls.Data, Version=2016.1.217.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Controls.DataVisualization, Version=2016.1.217.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Controls.GridView, Version=2016.1.217.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Controls.Input, Version=2016.1.217.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Data, Version=2016.1.217.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Telerik\UI for WPF Q1 2016\Binaries\WPF45\Telerik.Windows.Data.dll</HintPath>
+    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WpfAnimatedGif">
+      <HintPath>..\packages\WpfAnimatedGif.1.4.14\lib\net\WpfAnimatedGif.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomControls\commonMonitor_bench.xaml.cs">
+      <DependentUpon>commonMonitor_bench.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\commonMonitor_TCU.xaml.cs">
+      <DependentUpon>commonMonitor_TCU.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\programmeTCUDialog.xaml.cs">
+      <DependentUpon>programmeTCUDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataClass\CANControl.cs" />
+    <Compile Include="DataClass\DataProcess.cs" />
+    <Compile Include="DataClass\DbHelperMySQL.cs" />
+    <Compile Include="DataClass\ExportExcel.cs" />
+    <Compile Include="DataClass\ImportExcel.cs" />
+    <Compile Include="DataClass\MySQL_client.cs" />
+    <Compile Include="DataClass\Observer.cs" />
+    <Compile Include="DataClass\PorjectTools.cs" />
+    <Compile Include="DataClass\Subject.cs" />
+    <Compile Include="DataClass\ZipHelper.cs" />
+    <Compile Include="DBUtility\CommandInfo.cs" />
+    <Compile Include="DBUtility\DbHelperOleDb.cs" />
+    <Compile Include="DBUtility\DbHelperOra.cs" />
+    <Compile Include="DBUtility\DbHelperSQL.cs" />
+    <Compile Include="DBUtility\DbHelperSQL2.cs" />
+    <Compile Include="DBUtility\DbHelperSQLP.cs" />
+    <Compile Include="DBUtility\DESEncrypt.cs" />
+    <Compile Include="DBUtility\OracleHelper.cs" />
+    <Compile Include="DBUtility\PubConstant.cs" />
+    <Compile Include="DBUtility\SQLHelper.cs" />
+    <Compile Include="group\BackupFile.xaml.cs">
+      <DependentUpon>BackupFile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="group\DeviceManagementPage.xaml.cs">
+      <DependentUpon>DeviceManagementPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="group\ExportToExcel.xaml.cs">
+      <DependentUpon>ExportToExcel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="group\Home.xaml.cs">
+      <DependentUpon>Home.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="group\InterfaceSettingPage.xaml.cs">
+      <DependentUpon>InterfaceSettingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="group\ReportsCharView.xaml.cs">
+      <DependentUpon>ReportsCharView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="group\ReportsManagementPage.xaml.cs">
+      <DependentUpon>ReportsManagementPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="group\SignalsDefinedPage.xaml.cs">
+      <DependentUpon>SignalsDefinedPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="group\TestInfoPage.xaml.cs">
+      <DependentUpon>TestInfoPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="group\Tests\ManualTesting.xaml.cs">
+      <DependentUpon>ManualTesting.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="group\Tests\SingleTest.xaml.cs">
+      <DependentUpon>SingleTest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="group\Tests\Telerik_Char_Class.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -94,6 +198,170 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Assets\ModernUI.Theme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControls\commonMonitor_bench.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControls\commonMonitor_TCU.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControls\programmeTCUDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="group\BackupFile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="group\DeviceManagementPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="group\ExportToExcel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="group\Home.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="group\InterfaceSettingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="group\ReportsCharView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="group\ReportsManagementPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="group\SignalsDefinedPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="group\TestInfoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="group\Tests\ManualTesting.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="group\Tests\SingleTest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\icon_user--lite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\background.metro.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Testand_image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Welcome.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\btn_start.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\btn_start--hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\btn_start--pressed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\btn_start--disabled.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\ico_folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\btn_stop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\btn_stop--pressed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\btn_stop--hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\animate_break.gif" />
+    <Resource Include="Assets\animate_gear.gif" />
+    <Resource Include="Assets\ico_manualTest.png" />
+    <Resource Include="Assets\ico_marker.png" />
+    <Resource Include="Assets\ico_monitor.png" />
+    <Resource Include="Assets\ico_password.png" />
+    <Resource Include="Assets\ico_specialTest.png" />
+    <Resource Include="Assets\ico_standardTest.png" />
+    <Resource Include="Assets\ico_user.png" />
+    <Resource Include="Assets\ico_warning.png" />
+    <Resource Include="Assets\img_firmburn.png" />
+    <Resource Include="Assets\img_login.jpg" />
+    <Resource Include="Assets\img_loginDecoration.png" />
+    <Resource Include="Assets\img_signalContainer.png" />
+    <Resource Include="Assets\img_signalOff.png" />
+    <Resource Include="Assets\img_signalOn.png" />
+    <Resource Include="Assets\img_testIntro.png" />
+    <Resource Include="Assets\led_default.png" />
+    <Resource Include="Assets\led_fail.png" />
+    <Resource Include="Assets\led_pass.png" />
+    <Resource Include="Assets\light_off.png" />
+    <Resource Include="Assets\light_on.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\img_valve.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\img_Manual.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\img_Logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>7</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

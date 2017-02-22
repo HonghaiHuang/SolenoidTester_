@@ -1,0 +1,837 @@
+﻿<UserControl x:Name="conra" x:Class="SolenoidTester.group.Tests.SingleTest"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+             xmlns:local="clr-namespace:SolenoidTester.CustomControls"
+             xmlns:demo="clr-namespace:SolenoidTester.group.Tests"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             mc:Ignorable="d" 
+             d:DesignHeight="900" d:DesignWidth="1440">
+    <UserControl.DataContext>
+        <demo:LiveDataViewModel/>
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Segoe UI" />
+        </Style>
+        <SolidColorBrush x:Key="AccentBrush" Color="#FF8EC441" />
+    </UserControl.Resources>
+
+
+    <Grid Style="{StaticResource testPageContentRoot}">
+        <!--<StackPanel MinWidth="200">
+                <TextBlock Text="BASIC PAGE" Style="{StaticResource Heading2}" />
+                <TextBlock Text="Content goes here" />
+            </StackPanel>-->
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="45" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="45" />
+            </Grid.RowDefinitions>
+            <!--标题-->
+            <StackPanel Orientation="Horizontal">
+                <!--<TextBlock x:Name="TestItemNum" Text="*" Style="{StaticResource header_curStep}"/>
+                <TextBlock Text="/4" Style="{StaticResource header_totalSteps}" />-->
+                <TextBlock x:Name="TestItem" Text="自动测试" FontSize="20" Foreground="#FFFFFFFF" VerticalAlignment="Center" />
+            </StackPanel>
+            <!--主体-->
+            <Grid Grid.Row="1" HorizontalAlignment="Left" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="1123*"/>
+                </Grid.ColumnDefinitions>
+                <!--曲线图-->
+                <StackPanel  HorizontalAlignment="Left" Grid.ColumnSpan="2" Grid.Column="0" Width="1140">
+                    <StackPanel Background="#FF181818" Width="1140">
+                        <WrapPanel Height="60" Margin="0,0,0,0">
+                            <CheckBox x:Name="P_Source_Check" IsChecked="True" Template="{DynamicResource CheckBoxControlTemplate1}" Style="{StaticResource testChartOption}" Click="P_Source_Check_Click" >
+                                <TextBlock Style="{StaticResource chartLabel}" Text="油压源"/>
+                            </CheckBox>
+                            <CheckBox x:Name="P_TCC_Check" IsChecked="True" Template="{DynamicResource CheckBoxControlTemplate2}" Style="{StaticResource testChartOption}" Click="P_TCC_Check_Click" >
+                                <TextBlock Style="{StaticResource chartLabel}" Text="TCC"/>
+                            </CheckBox>
+                            <CheckBox x:Name="P_Line_Check" IsChecked="True" Template="{DynamicResource CheckBoxControlTemplate3}" Style="{StaticResource testChartOption}" Click="P_Line_Check_Click">
+                                <TextBlock Style="{StaticResource chartLabel}" Text="EPC"/>
+                            </CheckBox>
+                            <CheckBox x:Name="P_Shift_Check" IsChecked="True" Template="{DynamicResource CheckBoxControlTemplate4}" Style="{StaticResource testChartOption}" Click="P_Shift_Check_Click" >
+                                <TextBlock Style="{StaticResource chartLabel}" Text="换档电磁阀"/>
+                            </CheckBox>
+                            <CheckBox x:Name="P_C1234_Check" IsChecked="True" Template="{DynamicResource CheckBoxControlTemplate5}" Style="{StaticResource testChartOption}" Click="P_C1234_Check_Click">
+                                <TextBlock Style="{StaticResource chartLabel}" Text="C1234"/>
+                            </CheckBox>
+                            <CheckBox x:Name="P_CB26_Check" IsChecked="True" Template="{DynamicResource CheckBoxControlTemplate6}" Style="{StaticResource testChartOption}" Click="P_CB26_Check_Click" >
+                                <TextBlock Style="{StaticResource chartLabel}" Text="CB26"/>
+                            </CheckBox>
+                            <CheckBox x:Name="P_C35R_Check" IsChecked="True" Template="{DynamicResource CheckBoxControlTemplate7}" Style="{StaticResource testChartOption}" Click="P_C35R_Check_Click">
+                                <TextBlock Style="{StaticResource chartLabel}" Text="C35R"/>
+                            </CheckBox>
+                            <CheckBox x:Name="P_C456_Check" IsChecked="True" Template="{DynamicResource CheckBoxControlTemplate8}" Style="{StaticResource testChartOption}" Click="P_C456_Check_Click">
+                                <TextBlock Style="{StaticResource chartLabel}" Text="C456"/>
+                            </CheckBox>
+                            <CheckBox x:Name="temperature_Check" IsChecked="False" Template="{DynamicResource CheckBoxControlTemplate9}" Style="{StaticResource testChartOption}" Click="temperature_Check_Click">
+                                <TextBlock Style="{StaticResource chartLabel}" Text="油温"/>
+                            </CheckBox>
+                            <CheckBox x:Name="inputSpeed_Check" IsChecked="False" Template="{DynamicResource CheckBoxControlTemplate10}" Style="{StaticResource testChartOption}" Click="inputSpeed_Check_Click">
+                                <TextBlock Style="{StaticResource chartLabel}" Text="输入转速"/>
+                            </CheckBox>
+                            <CheckBox x:Name="outputSpeed_Check" IsChecked="False" Template="{DynamicResource CheckBoxControlTemplate11}" Style="{StaticResource testChartOption}" Click="outputSpeed_Check_Click">
+                                <TextBlock Style="{StaticResource chartLabel}" Text="输出转速"/>
+                            </CheckBox>
+                            <CheckBox x:Name="TCUInputSpeed_Check" IsChecked="False" Template="{DynamicResource CheckBoxControlTemplate12}" Style="{StaticResource testChartOption}" Click="TCUInputSpeed_Check_Click">
+                                <TextBlock Style="{StaticResource chartLabel}" Text="TCU输入转速"/>
+                            </CheckBox>
+                            <CheckBox x:Name="TCUOnputSpeed_Check" IsChecked="False" Template="{DynamicResource CheckBoxControlTemplate13}" Style="{StaticResource testChartOption}" Click="TCUOnputSpeed_Check_Click">
+                                <TextBlock Style="{StaticResource chartLabel}" Text="TCU输出转速"/>
+                            </CheckBox>
+                            <CheckBox x:Name="TCUtemperature_Check" IsChecked="False" Template="{DynamicResource CheckBoxControlTemplate14}" Style="{StaticResource testChartOption}" Click="TCUtemperature_Check_Click">
+                                <TextBlock Style="{StaticResource chartLabel}" Text="TCU温度"/>
+                            </CheckBox>
+                            <CheckBox x:Name="GreaNum_Check" IsChecked="False" Template="{DynamicResource CheckBoxControlTemplate15}" Style="{StaticResource testChartOption}" Click="GreaNum_Check_Checked">
+                                <TextBlock Style="{StaticResource chartLabel}" Text="需求档位"/>
+                            </CheckBox>
+                            <CheckBox IsChecked="{Binding UseAlignmentDate, Mode=Default}" Template="{DynamicResource CheckBoxControlTemplate8}" Style="{StaticResource testChartOption}">
+                                <TextBlock Style="{StaticResource chartLabel}" Text="显示方式"/>
+                            </CheckBox>
+                        </WrapPanel>
+                    </StackPanel>
+
+                    <telerik:RadCartesianChart Height="350" Margin="0,0,0,0"  >
+
+                        <telerik:RadCartesianChart.Behaviors>
+                            <telerik:ChartPanAndZoomBehavior ZoomMode="Both" PanMode="Horizontal" DragMode="Pan"/>
+                            <telerik:ChartTrackBallBehavior ShowIntersectionPoints="True"
+                                             ShowTrackInfo="False"/>
+                        </telerik:RadCartesianChart.Behaviors>
+                        <telerik:RadCartesianChart.Resources>
+                            <telerik:LinearAxis HorizontalLocation="Left" Maximum="2500" ElementBrush="White" Title="KPa" x:Key="pressureAxis" FontSize="10" MajorTickLength="5"/>
+                            <telerik:LinearAxis HorizontalLocation="Left" Maximum="150" ElementBrush="White" Title="N.m" x:Key="torqueAxis" FontSize="10" Minimum="-150"/>
+                            <telerik:LinearAxis HorizontalLocation="Left" Maximum="3000" ElementBrush="White" Title="RPM" x:Key="speedAxis" FontSize="10"/>
+                            <!--<telerik:LinearAxis HorizontalLocation="Right" ElementBrush="White" Title="档位" x:Key="gearAxis" FontSize="10" Minimum="0" Maximum="10"/>-->
+                        </telerik:RadCartesianChart.Resources>
+                        <telerik:RadCartesianChart.EmptyContentTemplate>
+                            <DataTemplate>
+                                <telerik:RadBusyIndicator IsBusy="True" IsIndeterminate="True" BusyContent="读取数据中 ..." />
+                            </DataTemplate>
+                        </telerik:RadCartesianChart.EmptyContentTemplate>
+
+                        <telerik:RadCartesianChart.Grid>
+                            <telerik:CartesianChartGrid MajorLinesVisibility="Y" MajorYLineStyle="{StaticResource StripLinesStyle}" Opacity="0.1" />
+                        </telerik:RadCartesianChart.Grid>
+
+                        <telerik:RadCartesianChart.HorizontalAxis>
+                            <telerik:DateTimeContinuousAxis MajorStepUnit="Second"
+                                                LabelInterval="20"
+                                                LabelFormat="mm:ss.f" FontFamily="Segoe UI"
+                                                PlotMode="OnTicks"
+                                                TickOrigin="{Binding AlignmentDate}" MaximumTicks="101" MajorTickLength="5" LineThickness="1"/>
+                        </telerik:RadCartesianChart.HorizontalAxis>
+
+
+
+
+                        <telerik:RadCartesianChart.VerticalAxis>
+                            <telerik:LinearAxis Maximum="12" HorizontalLocation="Right" Visibility="Collapsed" />
+                        </telerik:RadCartesianChart.VerticalAxis>
+
+
+
+                        <!--主油压-->
+                        <telerik:LineSeries x:Name="P_Source_line" Visibility="Visible" Stroke="#FF0063b1" StrokeThickness="2" VerticalAxis="{StaticResource pressureAxis}" ValueBinding="Value" CategoryBinding="Category" ItemsSource="{Binding P_Source_Data}"/>
+
+
+                        <!--油压1-->
+                        <telerik:LineSeries x:Name="P_TCC_line" Visibility="Visible"  Stroke="Red" StrokeThickness="2" VerticalAxis="{StaticResource pressureAxis}" ValueBinding="Value" CategoryBinding="Category" ItemsSource="{Binding P_TCC_Data}"/>
+
+
+                        <!--油压2-->
+                        <telerik:LineSeries x:Name="P_Line_line" Visibility="Visible"  Stroke="Orange" StrokeThickness="2" VerticalAxis="{StaticResource pressureAxis}" ValueBinding="Value" CategoryBinding="Category" ItemsSource="{Binding P_Line_Data}"/>
+
+
+                        <!--油压3-->
+                        <telerik:LineSeries x:Name="P_Shift_line" Visibility="Visible"  Stroke="Yellow" StrokeThickness="2" VerticalAxis="{StaticResource pressureAxis}" ValueBinding="Value" CategoryBinding="Category" ItemsSource="{Binding P_Shift_Data}"/>
+
+
+                        <!--油压4-->
+                        <telerik:LineSeries x:Name="P_C1234_line" Visibility="Visible"   Stroke="Lime" StrokeThickness="2" VerticalAxis="{StaticResource pressureAxis}" ValueBinding="Value" CategoryBinding="Category" ItemsSource="{Binding P_C1234_Data}"/>
+
+
+                        <!--油压5-->
+                        <telerik:LineSeries x:Name="P_CB26_line" Visibility="Visible"  Stroke="#FF007FFF" StrokeThickness="2" VerticalAxis="{StaticResource pressureAxis}" ValueBinding="Value" CategoryBinding="Category" ItemsSource="{Binding P_CB26_Data}"/>
+
+
+                        <!--输入扭矩-->
+                        <telerik:LineSeries x:Name="P_C35R_line" Visibility="Visible"  Stroke="Blue" StrokeThickness="2" VerticalAxis="{StaticResource pressureAxis}" ValueBinding="Value" CategoryBinding="Category" ItemsSource="{Binding P_C35R_Data}"/>
+
+
+                        <!--左输出扭矩-->
+                        <telerik:LineSeries x:Name="P_C456_line" Visibility="Visible"  Stroke="#FF8B00FF" StrokeThickness="2" VerticalAxis="{StaticResource pressureAxis}" ValueBinding="Value" CategoryBinding="Category" ItemsSource="{Binding P_C456_Data}"/>
+
+
+                        <!--右输出扭矩-->
+                        <telerik:LineSeries x:Name="temperature_line" Visibility="Collapsed" Stroke="#FFff4343" StrokeThickness="2" VerticalAxis="{StaticResource torqueAxis}" ValueBinding="Value" CategoryBinding="Category" ItemsSource="{Binding temperature_Data}"/>
+
+
+                        <!--输入转速-->
+                        <telerik:LineSeries x:Name="inputSpeed_line" Visibility="Collapsed" Stroke="#FFc30052" StrokeThickness="2" VerticalAxis="{StaticResource speedAxis}" ValueBinding="Value" CategoryBinding="Category" ItemsSource="{Binding inputSpeed_Data}"/>
+
+                        <!--左输出转速-->
+                        <telerik:LineSeries x:Name="outputSpeed_line" Visibility="Collapsed" Stroke="#FF9a0089" StrokeThickness="2" VerticalAxis="{StaticResource speedAxis}" ValueBinding="Value" CategoryBinding="Category" ItemsSource="{Binding outputSpeed_Data}"/>
+
+
+                        <!--右输出转速-->
+                        <telerik:LineSeries x:Name="TCUInputSpeed_line" Visibility="Collapsed" Stroke="#FF5d5a58" StrokeThickness="2" VerticalAxis="{StaticResource speedAxis}" ValueBinding="Value" CategoryBinding="Category" ItemsSource="{Binding TCUInputSpeed_Data}"/>
+
+
+                        <!--输出转速(CAN)-->
+                        <telerik:LineSeries x:Name="TCUOnputSpeed_line" Visibility="Collapsed" Stroke="#FF847545" StrokeThickness="2" VerticalAxis="{StaticResource speedAxis}" ValueBinding="Value" CategoryBinding="Category" ItemsSource="{Binding TCUOnputSpeed_Data}"/>
+
+
+                        <!--输入转速(CAN)-->
+                        <telerik:LineSeries x:Name="TCUtemperature_line" Visibility="Collapsed" Stroke="#FF68768a" StrokeThickness="2" VerticalAxis="{StaticResource speedAxis}" ValueBinding="Value" CategoryBinding="Category" ItemsSource="{Binding TCUtemperature_Data}"/>
+
+
+                        <!--需求档位-->
+                        <telerik:LineSeries x:Name="GreaNum_line" Visibility="Collapsed" Stroke="#FF038387" StrokeThickness="2" VerticalAxis="{StaticResource speedAxis}" ValueBinding="Value" CategoryBinding="Category" ItemsSource="{Binding GreaNum_Data}"/>
+
+                    </telerik:RadCartesianChart>
+
+                    <StackPanel  Height="160"  HorizontalAlignment="Left" Orientation="Horizontal" Background="#4C000000" Width="1140" >
+                        <StackPanel Height="155" Width="120" Margin="30,0,0,0" >
+                            <Grid Height="155" Width="120">
+                                <StackPanel Style="{StaticResource monitorHeader}">
+                                    <TextBlock Text="//" Style="{StaticResource monitorHeaderLabel}" />
+                                    <TextBlock Text="TCC电磁阀油压" Style="{StaticResource monitorTitle}" />
+                                </StackPanel>
+                                <Grid Style="{StaticResource barGaugeContainer}">
+                                    <telerik:RadVerticalLinearGauge Width="120" Height="Auto" OuterBorderThickness="0" OuterBackground="Transparent" Background="Transparent" BorderBrush="Transparent" OuterBorderBrush="Transparent" Foreground="White" BorderThickness="0" Margin="0,15,0,0">
+                                        <telerik:VerticalLinearScale Name="targetPressure1" Min="0" Max="1000" MajorTickStep="200" RelativeWidth="1" RelativeHeight="0.8" RelativeY="0" RelativeX="0.5" StartWidth="0.01" EndWidth="0.01" MajorTickBackground="#19FFFFFF" MiddleTickBackground="Transparent" MinorTickBackground="Transparent" LabelOffset="32" StrokeThickness="0" FontSize="10" FontFamily="Arial Narrow" MajorTickLocation="Outside" MajorTickOffset="-53"  MinorTicks="5"  MajorTickRelativeWidth="80" Fill="Transparent" Foreground="#99FFFFFF">
+                                            <telerik:VerticalLinearScale.Indicators>
+                                                <!--柱状图对应值-->
+                                                <telerik:BarIndicator x:Name="Tcccon1_1" Value="200" BorderBrush="Transparent" Background="Red" Margin="0,0,0,0" StartWidth="0.3" FontSize="14"/>
+                                            </telerik:VerticalLinearScale.Indicators>
+                                            <telerik:VerticalLinearScale.CustomItems>
+                                                <Border BorderBrush="#72FFFFFF" BorderThickness="1" telerik:ScaleObject.Value="0" telerik:ScaleObject.Location="OverCenter" telerik:ScaleObject.RelativeHeight="0.8*" telerik:ScaleObject.RelativeWidth="1*" Width="79" Height="1" Margin="33,0,0,0" HorizontalAlignment="Left" />
+                                            </telerik:VerticalLinearScale.CustomItems>
+                                        </telerik:VerticalLinearScale>
+                                    </telerik:RadVerticalLinearGauge>
+                                    <!--柱状图对应值-->
+                                    <TextBlock x:Name="Tcccon1_2" Style="{StaticResource barGaugeValue}" Text="200"/>
+                                    <TextBlock Style="{StaticResource barGaugeUnit}" Text="KPa" />
+                                </Grid>
+                            </Grid>
+
+
+
+                        </StackPanel>
+                        <StackPanel Height="155" Width="120" Margin="40,0,0,0" >
+                            <Grid Height="155" Width="120">
+                                <StackPanel Style="{StaticResource monitorHeader}">
+                                    <TextBlock Text="//" Style="{StaticResource monitorHeaderLabel}" />
+                                    <TextBlock Text="EPC电磁阀油压" Style="{StaticResource monitorTitle}" />
+                                </StackPanel>
+                                <Grid Style="{StaticResource barGaugeContainer}">
+                                    <telerik:RadVerticalLinearGauge Width="120" Height="Auto" OuterBorderThickness="0" OuterBackground="Transparent" Background="Transparent" BorderBrush="Transparent" OuterBorderBrush="Transparent" Foreground="White" BorderThickness="0" Margin="0,15,0,0">
+                                        <telerik:VerticalLinearScale Name="targetPressure2" Min="0" Max="1000" MajorTickStep="200" RelativeWidth="1" RelativeHeight="0.8" RelativeY="0" RelativeX="0.5" StartWidth="0.01" EndWidth="0.01" MajorTickBackground="#19FFFFFF" MiddleTickBackground="Transparent" MinorTickBackground="Transparent" LabelOffset="32" StrokeThickness="0" FontSize="10" FontFamily="Arial Narrow" MajorTickLocation="Outside" MajorTickOffset="-53"  MinorTicks="5"  MajorTickRelativeWidth="80" Fill="Transparent" Foreground="#99FFFFFF">
+                                            <telerik:VerticalLinearScale.Indicators>
+                                                <!--柱状图对应值-->
+                                                <telerik:BarIndicator x:Name="Tcccon2_1" Value="200" BorderBrush="Transparent" Background="Orange" Margin="0,0,0,0" StartWidth="0.3" FontSize="14"/>
+                                            </telerik:VerticalLinearScale.Indicators>
+                                            <telerik:VerticalLinearScale.CustomItems>
+                                                <Border BorderBrush="#72FFFFFF" BorderThickness="1" telerik:ScaleObject.Value="0" telerik:ScaleObject.Location="OverCenter" telerik:ScaleObject.RelativeHeight="0.8*" telerik:ScaleObject.RelativeWidth="1*" Width="79" Height="1" Margin="33,0,0,0" HorizontalAlignment="Left" />
+                                            </telerik:VerticalLinearScale.CustomItems>
+                                        </telerik:VerticalLinearScale>
+                                    </telerik:RadVerticalLinearGauge>
+                                    <!--柱状图对应值-->
+                                    <TextBlock x:Name="Tcccon2_2" Style="{StaticResource barGaugeValue}" Text="200"/>
+                                    <TextBlock Style="{StaticResource barGaugeUnit}" Text="KPa" />
+                                </Grid>
+                            </Grid>
+
+                        </StackPanel>
+                        <StackPanel Height="155" Width="120" Margin="40,0,0,0">
+                            <Grid Height="155" Width="120">
+                                <StackPanel Style="{StaticResource monitorHeader}">
+                                    <TextBlock Text="//" Style="{StaticResource monitorHeaderLabel}" />
+                                    <TextBlock Text="换档电磁阀油压" Style="{StaticResource monitorTitle}" />
+                                </StackPanel>
+                                <Grid Style="{StaticResource barGaugeContainer}">
+                                    <telerik:RadVerticalLinearGauge Width="120" Height="Auto" OuterBorderThickness="0" OuterBackground="Transparent" Background="Transparent" BorderBrush="Transparent" OuterBorderBrush="Transparent" Foreground="White" BorderThickness="0" Margin="0,15,0,0">
+                                        <telerik:VerticalLinearScale Name="targetPressure3" Min="0" Max="1000" MajorTickStep="200" RelativeWidth="1" RelativeHeight="0.8" RelativeY="0" RelativeX="0.5" StartWidth="0.01" EndWidth="0.01" MajorTickBackground="#19FFFFFF" MiddleTickBackground="Transparent" MinorTickBackground="Transparent" LabelOffset="32" StrokeThickness="0" FontSize="10" FontFamily="Arial Narrow" MajorTickLocation="Outside" MajorTickOffset="-53"  MinorTicks="5"  MajorTickRelativeWidth="80" Fill="Transparent" Foreground="#99FFFFFF">
+                                            <telerik:VerticalLinearScale.Indicators>
+                                                <!--柱状图对应值-->
+                                                <telerik:BarIndicator x:Name="Tcccon3_1" Value="200" BorderBrush="Transparent" Background="Yellow" Margin="0,0,0,0" StartWidth="0.3" FontSize="14"/>
+                                            </telerik:VerticalLinearScale.Indicators>
+                                            <telerik:VerticalLinearScale.CustomItems>
+                                                <Border BorderBrush="#72FFFFFF" BorderThickness="1" telerik:ScaleObject.Value="0" telerik:ScaleObject.Location="OverCenter" telerik:ScaleObject.RelativeHeight="0.8*" telerik:ScaleObject.RelativeWidth="1*" Width="79" Height="1" Margin="33,0,0,0" HorizontalAlignment="Left" />
+                                            </telerik:VerticalLinearScale.CustomItems>
+                                        </telerik:VerticalLinearScale>
+                                    </telerik:RadVerticalLinearGauge>
+                                    <!--柱状图对应值-->
+                                    <TextBlock x:Name="Tcccon3_2" Style="{StaticResource barGaugeValue}" Text="200"/>
+                                    <TextBlock Style="{StaticResource barGaugeUnit}" Text="KPa" />
+                                </Grid>
+                            </Grid>
+
+                        </StackPanel>
+                        <StackPanel Height="155" Width="120" Margin="40,0,0,0">
+                            <Grid Height="155" Width="120">
+                                <StackPanel Style="{StaticResource monitorHeader}">
+                                    <TextBlock Text="//" Style="{StaticResource monitorHeaderLabel}" />
+                                    <TextBlock Text="C1234电磁阀油压" Style="{StaticResource monitorTitle}" />
+                                </StackPanel>
+                                <Grid Style="{StaticResource barGaugeContainer}">
+                                    <telerik:RadVerticalLinearGauge Width="120" Height="Auto" OuterBorderThickness="0" OuterBackground="Transparent" Background="Transparent" BorderBrush="Transparent" OuterBorderBrush="Transparent" Foreground="White" BorderThickness="0" Margin="0,15,0,0">
+                                        <telerik:VerticalLinearScale Name="targetPressure4" Min="0" Max="1000" MajorTickStep="200" RelativeWidth="1" RelativeHeight="0.8" RelativeY="0" RelativeX="0.5" StartWidth="0.01" EndWidth="0.01" MajorTickBackground="#19FFFFFF" MiddleTickBackground="Transparent" MinorTickBackground="Transparent" LabelOffset="32" StrokeThickness="0" FontSize="10" FontFamily="Arial Narrow" MajorTickLocation="Outside" MajorTickOffset="-53"  MinorTicks="5"  MajorTickRelativeWidth="80" Fill="Transparent" Foreground="#99FFFFFF">
+                                            <telerik:VerticalLinearScale.Indicators>
+                                                <!--柱状图对应值-->
+                                                <telerik:BarIndicator x:Name="Tcccon4_1" Value="200" BorderBrush="Transparent" Background="Lime" Margin="0,0,0,0" StartWidth="0.3" FontSize="14"/>
+                                            </telerik:VerticalLinearScale.Indicators>
+                                            <telerik:VerticalLinearScale.CustomItems>
+                                                <Border BorderBrush="#72FFFFFF" BorderThickness="1" telerik:ScaleObject.Value="0" telerik:ScaleObject.Location="OverCenter" telerik:ScaleObject.RelativeHeight="0.8*" telerik:ScaleObject.RelativeWidth="1*" Width="79" Height="1" Margin="33,0,0,0" HorizontalAlignment="Left" />
+                                            </telerik:VerticalLinearScale.CustomItems>
+                                        </telerik:VerticalLinearScale>
+                                    </telerik:RadVerticalLinearGauge>
+                                    <!--柱状图对应值-->
+                                    <TextBlock x:Name="Tcccon4_2" Style="{StaticResource barGaugeValue}" Text="200"/>
+                                    <TextBlock Style="{StaticResource barGaugeUnit}" Text="KPa" />
+                                </Grid>
+                            </Grid>
+
+                        </StackPanel>
+                        <StackPanel Height="155" Width="120" Margin="40,0,0,0" >
+                            <Grid Height="155" Width="120">
+                                <StackPanel Style="{StaticResource monitorHeader}">
+                                    <TextBlock Text="//" Style="{StaticResource monitorHeaderLabel}" />
+                                    <TextBlock Text="CB26电磁阀油压" Style="{StaticResource monitorTitle}" />
+                                </StackPanel>
+                                <Grid Style="{StaticResource barGaugeContainer}">
+                                    <telerik:RadVerticalLinearGauge Width="120" Height="Auto" OuterBorderThickness="0" OuterBackground="Transparent" Background="Transparent" BorderBrush="Transparent" OuterBorderBrush="Transparent" Foreground="White" BorderThickness="0" Margin="0,15,0,0">
+                                        <telerik:VerticalLinearScale Name="targetPressure5" Min="0" Max="1000" MajorTickStep="200" RelativeWidth="1" RelativeHeight="0.8" RelativeY="0" RelativeX="0.5" StartWidth="0.01" EndWidth="0.01" MajorTickBackground="#19FFFFFF" MiddleTickBackground="Transparent" MinorTickBackground="Transparent" LabelOffset="32" StrokeThickness="0" FontSize="10" FontFamily="Arial Narrow" MajorTickLocation="Outside" MajorTickOffset="-53"  MinorTicks="5"  MajorTickRelativeWidth="80" Fill="Transparent" Foreground="#99FFFFFF">
+                                            <telerik:VerticalLinearScale.Indicators>
+                                                <!--柱状图对应值-->
+                                                <telerik:BarIndicator x:Name="Tcccon5_1" Value="200" BorderBrush="Transparent" Background="#FF007FFF" Margin="0,0,0,0" StartWidth="0.3" FontSize="14"/>
+                                            </telerik:VerticalLinearScale.Indicators>
+                                            <telerik:VerticalLinearScale.CustomItems>
+                                                <Border BorderBrush="#72FFFFFF" BorderThickness="1" telerik:ScaleObject.Value="0" telerik:ScaleObject.Location="OverCenter" telerik:ScaleObject.RelativeHeight="0.8*" telerik:ScaleObject.RelativeWidth="1*" Width="79" Height="1" Margin="33,0,0,0" HorizontalAlignment="Left" />
+                                            </telerik:VerticalLinearScale.CustomItems>
+                                        </telerik:VerticalLinearScale>
+                                    </telerik:RadVerticalLinearGauge>
+                                    <!--柱状图对应值-->
+                                    <TextBlock x:Name="Tcccon5_2" Style="{StaticResource barGaugeValue}" Text="200"/>
+                                    <TextBlock Style="{StaticResource barGaugeUnit}" Text="KPa" />
+                                </Grid>
+                            </Grid>
+
+                        </StackPanel>
+                        <StackPanel Height="155" Width="120" Margin="40,0,0,0" >
+                            <Grid Height="155" Width="120">
+                                <StackPanel Style="{StaticResource monitorHeader}">
+                                    <TextBlock Text="//" Style="{StaticResource monitorHeaderLabel}" />
+                                    <TextBlock Text="C35R电磁阀油压" Style="{StaticResource monitorTitle}" />
+                                </StackPanel>
+                                <Grid Style="{StaticResource barGaugeContainer}">
+                                    <telerik:RadVerticalLinearGauge Width="120" Height="Auto" OuterBorderThickness="0" OuterBackground="Transparent" Background="Transparent" BorderBrush="Transparent" OuterBorderBrush="Transparent" Foreground="White" BorderThickness="0" Margin="0,15,0,0">
+                                        <telerik:VerticalLinearScale Name="targetPressure6" Min="0" Max="1000" MajorTickStep="200" RelativeWidth="1" RelativeHeight="0.8" RelativeY="0" RelativeX="0.5" StartWidth="0.01" EndWidth="0.01" MajorTickBackground="#19FFFFFF" MiddleTickBackground="Transparent" MinorTickBackground="Transparent" LabelOffset="32" StrokeThickness="0" FontSize="10" FontFamily="Arial Narrow" MajorTickLocation="Outside" MajorTickOffset="-53"  MinorTicks="5"  MajorTickRelativeWidth="80" Fill="Transparent" Foreground="#99FFFFFF">
+                                            <telerik:VerticalLinearScale.Indicators>
+                                                <!--柱状图对应值-->
+                                                <telerik:BarIndicator x:Name="Tcccon6_1" Value="200" BorderBrush="Transparent" Background="Blue" Margin="0,0,0,0" StartWidth="0.3" FontSize="14"/>
+                                            </telerik:VerticalLinearScale.Indicators>
+                                            <telerik:VerticalLinearScale.CustomItems>
+                                                <Border BorderBrush="#72FFFFFF" BorderThickness="1" telerik:ScaleObject.Value="0" telerik:ScaleObject.Location="OverCenter" telerik:ScaleObject.RelativeHeight="0.8*" telerik:ScaleObject.RelativeWidth="1*" Width="79" Height="1" Margin="33,0,0,0" HorizontalAlignment="Left" />
+                                            </telerik:VerticalLinearScale.CustomItems>
+                                        </telerik:VerticalLinearScale>
+                                    </telerik:RadVerticalLinearGauge>
+                                    <!--柱状图对应值-->
+                                    <TextBlock x:Name="Tcccon6_2" Style="{StaticResource barGaugeValue}" Text="200"/>
+                                    <TextBlock Style="{StaticResource barGaugeUnit}" Text="KPa" />
+                                </Grid>
+                            </Grid>
+
+                        </StackPanel>
+                        <StackPanel Height="155" Width="120" Margin="40,0,30,0">
+                            <Grid Height="155" Width="120">
+                                <StackPanel Style="{StaticResource monitorHeader}">
+                                    <TextBlock Text="//" Style="{StaticResource monitorHeaderLabel}" />
+                                    <TextBlock Text="C456电磁阀油压" Style="{StaticResource monitorTitle}" />
+                                </StackPanel>
+                                <Grid Style="{StaticResource barGaugeContainer}">
+                                    <telerik:RadVerticalLinearGauge Width="120" Height="Auto" OuterBorderThickness="0" OuterBackground="Transparent" Background="Transparent" BorderBrush="Transparent" OuterBorderBrush="Transparent" Foreground="White" BorderThickness="0" Margin="0,15,0,0">
+                                        <telerik:VerticalLinearScale Name="targetPressure7" Min="0" Max="1000" MajorTickStep="200" RelativeWidth="1" RelativeHeight="0.8" RelativeY="0" RelativeX="0.5" StartWidth="0.01" EndWidth="0.01" MajorTickBackground="#19FFFFFF" MiddleTickBackground="Transparent" MinorTickBackground="Transparent" LabelOffset="32" StrokeThickness="0" FontSize="10" FontFamily="Arial Narrow" MajorTickLocation="Outside" MajorTickOffset="-53"  MinorTicks="5"  MajorTickRelativeWidth="80" Fill="Transparent" Foreground="#99FFFFFF">
+                                            <telerik:VerticalLinearScale.Indicators>
+                                                <!--柱状图对应值-->
+                                                <telerik:BarIndicator x:Name="Tcccon7_1" Value="200" BorderBrush="Transparent" Background="#FF8B00FF" Margin="0,0,0,0" StartWidth="0.3" FontSize="14"/>
+                                            </telerik:VerticalLinearScale.Indicators>
+                                            <telerik:VerticalLinearScale.CustomItems>
+                                                <Border BorderBrush="#72FFFFFF" BorderThickness="1" telerik:ScaleObject.Value="0" telerik:ScaleObject.Location="OverCenter" telerik:ScaleObject.RelativeHeight="0.8*" telerik:ScaleObject.RelativeWidth="1*" Width="79" Height="1" Margin="33,0,0,0" HorizontalAlignment="Left" />
+                                            </telerik:VerticalLinearScale.CustomItems>
+                                        </telerik:VerticalLinearScale>
+                                    </telerik:RadVerticalLinearGauge>
+                                    <!--柱状图对应值-->
+                                    <TextBlock x:Name="Tcccon7_2" Style="{StaticResource barGaugeValue}" Text="200"/>
+                                    <TextBlock Style="{StaticResource barGaugeUnit}" Text="KPa" />
+                                </Grid>
+                            </Grid>
+
+                        </StackPanel>
+
+                    </StackPanel>
+                </StackPanel>
+
+
+                <!--数字表-->
+                <StackPanel Orientation="Horizontal" Margin="0,570,0,0" HorizontalAlignment="Left" Grid.ColumnSpan="2" Width="1140" >
+
+                    <!--<StackPanel Margin="0,0,0,0">
+                        -->
+                    <!--柱状图-->
+                    <!--
+                        <Grid Style="{StaticResource digiMonitorContainer_2row}" >
+                            <StackPanel Style="{StaticResource monitorHeader}">
+                                <TextBlock Text="//" Style="{StaticResource monitorHeaderLabel}" />
+                                <TextBlock Text="目标油压(CAN)" Style="{StaticResource monitorTitle}" />
+                            </StackPanel>
+                            <Grid Style="{StaticResource barGaugeContainer}">
+                                <telerik:RadVerticalLinearGauge Width="120" Height="90" OuterBorderThickness="0" OuterBackground="Transparent" Background="Transparent" BorderBrush="Transparent" OuterBorderBrush="Transparent" Foreground="White" BorderThickness="0">
+                                    <telerik:VerticalLinearScale Name="targetPressure1" Min="0" Max="2000" MajorTickStep="500" RelativeWidth="1" RelativeHeight="0.8" RelativeY="0" RelativeX="0.5" StartWidth="0.01" EndWidth="0.01" MajorTickBackground="#19FFFFFF" MiddleTickBackground="Transparent" MinorTickBackground="Transparent" LabelOffset="32" StrokeThickness="0" FontSize="10" FontFamily="Arial Narrow" MajorTickLocation="Outside" MajorTickOffset="-53"  MinorTicks="5"  MajorTickRelativeWidth="80" Fill="Transparent" Foreground="#99FFFFFF">
+
+
+                                        <telerik:VerticalLinearScale.CustomItems>
+                                            <Border BorderBrush="#72FFFFFF" BorderThickness="1" telerik:ScaleObject.Value="0" telerik:ScaleObject.Location="OverCenter" telerik:ScaleObject.RelativeHeight="0.8*" telerik:ScaleObject.RelativeWidth="1*" Width="79" Height="1" Margin="33,0,0,0" HorizontalAlignment="Left" />
+                                        </telerik:VerticalLinearScale.CustomItems>
+
+                                        <telerik:VerticalLinearScale.Indicators>
+                                            <telerik:BarIndicator x:Name="Epccon" Value="200" BorderBrush="Transparent" Background="#FF3fc2ae" Margin="-20,0,0,0"/>
+                                        </telerik:VerticalLinearScale.Indicators>
+
+                                    </telerik:VerticalLinearScale>
+                                </telerik:RadVerticalLinearGauge>
+                                -->
+                    <!--柱状图对应值-->
+                    <!--
+                                <TextBlock x:Name="Epccon1" Style="{StaticResource barGaugeValue}" Text="200" />
+                                <TextBlock Style="{StaticResource barGaugeUnit}" Text="KPa" />
+                            </Grid>
+                        </Grid>
+                    </StackPanel>-->
+                    <!--<StackPanel >
+                        -->
+                    <!--柱状图-->
+                    <!--
+                        <Grid Style="{StaticResource digiMonitorContainer_2row}">
+                            <StackPanel Style="{StaticResource monitorHeader}">
+                                <TextBlock Text="//" Style="{StaticResource monitorHeaderLabel}" />
+                                <TextBlock Text="目标锁止油压(CAN)" Style="{StaticResource monitorTitle}" />
+                            </StackPanel>
+                            <Grid Style="{StaticResource barGaugeContainer}">
+                                <telerik:RadVerticalLinearGauge Width="120" Height="90" OuterBorderThickness="0" OuterBackground="Transparent" Background="Transparent" BorderBrush="Transparent" OuterBorderBrush="Transparent" Foreground="White" BorderThickness="0">
+                                    <telerik:VerticalLinearScale Name="targetPressure2" Min="0" Max="2000" MajorTickStep="500" RelativeWidth="1" RelativeHeight="0.8" RelativeY="0" RelativeX="0.5" StartWidth="0.01" EndWidth="0.01" MajorTickBackground="#19FFFFFF" MiddleTickBackground="Transparent" MinorTickBackground="Transparent" LabelOffset="32" StrokeThickness="0" FontSize="10" FontFamily="Arial Narrow" MajorTickLocation="Outside" MajorTickOffset="-53"  MinorTicks="5"  MajorTickRelativeWidth="80" Fill="Transparent" Foreground="#99FFFFFF">
+                                        <telerik:VerticalLinearScale.Indicators>
+                                            -->
+                    <!--柱状图对应值-->
+                    <!--
+                                            <telerik:BarIndicator x:Name="Tcccon" Value="200" BorderBrush="Transparent" Background="#FFc4822d" Margin="-20,0,0,0" />
+                                        </telerik:VerticalLinearScale.Indicators>
+                                        <telerik:VerticalLinearScale.CustomItems>
+                                            <Border BorderBrush="#72FFFFFF" BorderThickness="1" telerik:ScaleObject.Value="0" telerik:ScaleObject.Location="OverCenter" telerik:ScaleObject.RelativeHeight="0.8*" telerik:ScaleObject.RelativeWidth="1*" Width="79" Height="1" Margin="33,0,0,0" HorizontalAlignment="Left" />
+                                        </telerik:VerticalLinearScale.CustomItems>
+                                    </telerik:VerticalLinearScale>
+                                </telerik:RadVerticalLinearGauge>
+                                -->
+                    <!--柱状图对应值-->
+                    <!--
+                                <TextBlock x:Name="Tcccon1" Style="{StaticResource barGaugeValue}" Text="200"/>
+                                <TextBlock Style="{StaticResource barGaugeUnit}" Text="KPa" />
+                            </Grid>
+                        </Grid>
+                    </StackPanel>-->
+
+                    <StackPanel Margin="0,0,0,0" Background="#4C000000"  >
+
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+                            <local:commonMonitor_bench x:Name="P_Source" TitleTxt="油压源" VauleTxt="999" UnitLabel="KPa" />
+                            <local:commonMonitor_bench x:Name="InputSpeed" TitleTxt="输入转速" VauleTxt="999" UnitLabel="RPM" />
+                            <local:commonMonitor_bench x:Name="OutputSpeed" TitleTxt="输出转速" VauleTxt="999" UnitLabel="RPM" />
+                            <local:commonMonitor_bench x:Name="temperature" TitleTxt="油温" VauleTxt="999" UnitLabel="°C" />
+                            <Grid Style="{StaticResource digiMonitorContainer}">
+                                <StackPanel Style="{StaticResource monitorHeader}">
+                                    <TextBlock Text="//" Style="{StaticResource monitorHeaderLabel}" />
+                                    <TextBlock Text="换挡电磁阀(CAN)" Style="{StaticResource monitorTitle}" />
+                                </StackPanel>
+                                <!--根据状态显示对应图片-->
+                                <Image x:Name="solenoid_stateOn" Stretch="None"  Source="/Assets/img_signalOn.png" Style="{StaticResource valveStatus}"/>
+                                <Image x:Name="solenoid_stateOff" Stretch="None" Source="/Assets/img_signalOff.png" Style="{StaticResource valveStatus}" Visibility="Collapsed"/>
+                            </Grid>
+
+                        </StackPanel>
+                        <!--<StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+                            <local:commonMonitor_bench x:Name="P_TCC" TitleTxt="油压1" VauleTxt="999" UnitLabel="KPa" />
+                           
+
+
+                        </StackPanel>-->
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+                            <local:commonMonitor_bench x:Name="inputSpeed" TitleTxt="备用" VauleTxt="999" UnitLabel="RPM" />
+                            <!--<local:commonMonitor_bench x:Name="outputSpeed" TitleTxt="负载电流" VauleTxt="999" UnitLabel="A" />
+                            <local:commonMonitor_bench x:Name="Slip" TitleTxt="滑差" VauleTxt="999" UnitLabel="RPM" />-->
+                            <local:commonMonitor_bench x:Name="InputSpeed_TCU" TitleTxt="TCU输入转速" VauleTxt="999" UnitLabel="RPM" />
+                            <local:commonMonitor_bench x:Name="OutputSpeed_TCU" TitleTxt="TCU输出转速" VauleTxt="999" UnitLabel="RPM" />
+                            <local:commonMonitor_bench x:Name="Temperature_TCU" TitleTxt="TCU温度" VauleTxt="999" UnitLabel="°C" />
+                            <!--压力开光信号-->
+                            <Grid Style="{StaticResource digiMonitorContainer}">
+                                <StackPanel Style="{StaticResource monitorHeader}">
+                                    <TextBlock Text="//" Style="{StaticResource monitorHeaderLabel}" />
+                                    <TextBlock Text="压力开关信号(CAN)" Style="{StaticResource monitorTitle}" />
+                                </StackPanel>
+                                <Border x:Name="Pressure_switch" Style="{StaticResource lightsContainer}">
+                                    <StackPanel Orientation="Horizontal" Margin="10,0">
+                                        <!--根据不同信号更改对应小灯图片-->
+                                        <Image x:Name="Pressure_switch_image4" Stretch="None" Source="/Assets/light_on.png" Style="{StaticResource signalLight}" />
+                                        <Image x:Name="Pressure_switch_image2" Stretch="None" Source="/Assets/light_off.png" Style="{StaticResource signalLight}" />
+                                        <Image x:Name="Pressure_switch_image1" Stretch="None" Source="/Assets/light_on.png" Style="{StaticResource signalLight}" />
+                                        <Image x:Name="Pressure_switch_image3" Stretch="None" Source="/Assets/light_off.png" Style="{StaticResource signalLight}" />
+                                    </StackPanel>
+                                </Border>
+                            </Grid>
+
+
+                        </StackPanel>
+                        <!--<StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+                            <local:commonMonitor_bench x:Name="P_C35R" TitleTxt="输入扭矩" VauleTxt="999" UnitLabel="N.m" />
+                            <local:commonMonitor_bench x:Name="P_C456" TitleTxt="左输出扭矩" VauleTxt="999" UnitLabel="N.m" />
+                            <local:commonMonitor_bench x:Name="temperature" TitleTxt="右输出扭矩" VauleTxt="999" UnitLabel="N.m" />
+                            <local:commonMonitor_TCU x:Name="TCUOnputSpeed" TitleTxt="输出转速(CAN)" VauleTxt="999" UnitLabel="RPM" />
+                            <local:commonMonitor_TCU x:Name="TrqueRatio" TitleTxt="变扭比" VauleTxt="999" />
+                        </StackPanel>-->
+                    </StackPanel>
+                    <StackPanel Width="405" Background="#4C000000" >
+                        <StackPanel  Style="{StaticResource monitorHeader}">
+                            <TextBlock Text="//" Style="{StaticResource monitorHeaderLabel}"/>
+                            <TextBlock Text="当前档位(CAN)" Style="{StaticResource monitorTitle}" />
+                        </StackPanel>
+                        <TextBlock Name="Gear" Text="D档" Style="{StaticResource monitorValue_gear}" Margin="30,10,10,0" Width="100" VerticalAlignment="Top" HorizontalAlignment="Left" TextAlignment="Left" Height="31" />
+                        <Canvas Margin="30,10,0,0">
+                            <TextBlock x:Name="PRND_P" Style="{StaticResource gearChart}" Text="P" Canvas.Left="0" />
+                            <TextBlock x:Name="PRND_R" Style="{StaticResource gearChart}" Text="R" Canvas.Left="33"/>
+                            <TextBlock x:Name="PRND_N" Style="{StaticResource gearChart}" Text="N" Canvas.Left="66"/>
+                            <TextBlock x:Name="PRND_D" Style="{StaticResource gearChart_Current}" Text="D"  Canvas.Left="99"/>
+                            <TextBlock x:Name="Gear_D1_B" Style="{StaticResource gearChart}" Text="D1-B" Canvas.Top="31" Canvas.Left="99"/>
+                            <TextBlock x:Name="Gear_D1" Style="{StaticResource gearChart}" Text="D1" Canvas.Top="31" Canvas.Left="132"/>
+                            <TextBlock x:Name="Gear_D2" Style="{StaticResource gearChart}" Text="D2" Canvas.Top="31" Canvas.Left="165" />
+                            <TextBlock x:Name="Gear_D3" Style="{StaticResource gearChart}" Text="D3" Canvas.Top="31" Canvas.Left="198"/>
+                            <TextBlock x:Name="Gear_D4" Style="{StaticResource gearChart}" Text="D4" Canvas.Top="31" Canvas.Left="231"/>
+                            <TextBlock x:Name="Gear_D5" Style="{StaticResource gearChart}" Text="D5" Canvas.Top="31" Canvas.Left="264"/>
+                            <TextBlock x:Name="Gear_D6" Style="{StaticResource gearChart}" Text="D6" Canvas.Top="31" Canvas.Left="297"/>
+                        </Canvas>
+                    </StackPanel>
+
+
+                </StackPanel>
+                <!--环形码表-->
+                <StackPanel HorizontalAlignment="Right"  Grid.Column="1"  Margin="1020,410,0,0" >
+
+                    <!--<telerik:RadVerticalLinearGauge Width="100" Height="400" telerik:StyleManager.Theme="Summer">
+                        <telerik:VerticalLinearScale IsInteractive="True"
+                         RangeLocation="Outside"
+                         RangeOffset="-0.02*">
+
+                            <telerik:VerticalLinearScale.Ranges>
+                                <telerik:GaugeRange Min="0" Max="25"
+                                StartWidth="0.02"
+                                EndWidth="0.02"
+                                         IndicatorBackground="Green" Stroke="Green" />
+                                -->
+                    <!--Background="#FF23568F"
+                                TickBackground="#FF23568F"
+                                LabelForeground="#FF23568F"-->
+                    <!--
+
+
+                                <telerik:GaugeRange Min="25" Max="50"
+                                StartWidth="0.02"
+                                EndWidth="0.02"
+                                IndicatorBackground="Yellow" Stroke="Yellow"/>
+                                -->
+                    <!--Background="#FF23568F"
+                                TickBackground="#FF23568F"
+                                LabelForeground="#FF23568F"-->
+                    <!--
+
+                                <telerik:GaugeRange Min="50" Max="75"
+                                StartWidth="0.02"
+                                EndWidth="0.02"
+                                IndicatorBackground="Yellow" Stroke="Orange" 
+                                        />
+                                -->
+                    <!--Background="#FF23568F"
+                                TickBackground="#FF23568F"
+                                LabelForeground="#FF23568F"-->
+                    <!--
+
+
+                                <telerik:GaugeRange Min="75" Max="100"
+                                StartWidth="0.02"
+                                EndWidth="0.02"
+                                IndicatorBackground="DarkRed" Stroke="DarkRed"/>
+                                -->
+                    <!--Background="#FFA0CCFF"
+                                TickBackground="#FFA0CCFF"
+                                LabelForeground="#FFA0CCFF"-->
+                    <!--
+
+                            </telerik:VerticalLinearScale.Ranges>
+                            <telerik:VerticalLinearScale.Indicators>
+
+                                <telerik:BarIndicator x:Name="BarIndicatoValue"  
+                                  Value="50"
+                                  StartWidth="0.06"  UseRangeColor="True" />
+
+                                <telerik:StateIndicator UseRangeColor="True"  
+                                    Value="60"
+                                    telerik:ScaleObject.RelativeWidth="0.10*"
+                                    telerik:ScaleObject.RelativeHeight="0.04*"
+                                    telerik:ScaleObject.RelativeX="0.04"
+                                    telerik:ScaleObject.RelativeY="0.12" />
+                            </telerik:VerticalLinearScale.Indicators>
+                        </telerik:VerticalLinearScale>
+                    </telerik:RadVerticalLinearGauge>-->
+
+                    <!--<Grid Style="{StaticResource gaugeContainer}">
+                        <StackPanel Style="{StaticResource gaugeHeader}">
+                            <TextBlock Text="//" Style="{StaticResource monitorHeaderLabel_bench}" />
+                            <TextBlock Text="输入转速" Style="{StaticResource monitorTitle}" />
+                        </StackPanel>
+                        <TextBlock x:Name="inputSpeed1" Text="999" Style="{StaticResource gaugeValue}" />
+                        <TextBlock Text="RPM" Style="{StaticResource gaugeUnit}" />
+                        <telerik:RadRadialGauge x:Name="radGauge_speedInput" Width="120" Height="120" InnerBackground="Transparent" InnerBorderBrush="Transparent" OuterBackground="Transparent" OuterBorderBrush="Transparent">
+                            <telerik:RadialScale x:Name="radialScale" Min="0" Max="3000" StartWidth="0.2" EndWidth="0.2" MajorTicks="8" MiddleTicks="1" MinorTicks="1" MajorTickLocation="OverCenter" MajorTickBackground="#FF252526" MajorTickRelativeHeight="0.2*" RangeLocation="OverCenter" LabelLocation="Outside" LabelOffset="2" Foreground="#99FFFFFF" FontSize="10" FontFamily="Segoe UI Light" LabelRotationMode="None" Margin="0,20,0,0" >
+                                <telerik:RadialScale.Indicators>
+                                    <telerik:Marker Name="inputSpeed2" IsAnimated="True" Style="{StaticResource EllipseMarkerStyle}" Value="750"/>
+                                </telerik:RadialScale.Indicators>
+                                <telerik:RadialScale.Ranges>
+                                    <telerik:GaugeRange Min="0" Max="750" Background="#FFDFDFDF" IndicatorBackground="#FF252526" StartWidth="0.12" />
+                                    <telerik:GaugeRange Min="750" Max="1750" Background="#FFC7C7C7" IndicatorBackground="#FF252526" StartWidth="0.12" />
+                                    <telerik:GaugeRange Min="1750" Max="3000" Background="#FFB1B1B1" IndicatorBackground="#FF252526" StartWidth="0.12" />
+                                </telerik:RadialScale.Ranges>
+                            </telerik:RadialScale>
+                        </telerik:RadRadialGauge>
+                    </Grid>
+                    <Grid Style="{StaticResource gaugeContainer}">
+                        <StackPanel Style="{StaticResource gaugeHeader}">
+                            <TextBlock Text="//" Style="{StaticResource monitorHeaderLabel_bench}" />
+                            <TextBlock Text="左输出转速" Style="{StaticResource monitorTitle}" />
+                        </StackPanel>
+                        <TextBlock x:Name="outputSpeed_1" Text="9999" Style="{StaticResource gaugeValue}" />
+                        <TextBlock Text="RPM" Style="{StaticResource gaugeUnit}" />
+                        <telerik:RadRadialGauge x:Name="radGauge_speedOutputLeft" Width="120" Height="120" InnerBackground="Transparent" InnerBorderBrush="Transparent" OuterBackground="Transparent" OuterBorderBrush="Transparent">
+                            <telerik:RadialScale x:Name="radialScale_speedOutputLeft" Min="0" Max="3000" StartWidth="0.2" EndWidth="0.2" MajorTicks="8" MiddleTicks="1" MinorTicks="1" MajorTickLocation="OverCenter" MajorTickBackground="#FF252526" MajorTickRelativeHeight="0.2*" RangeLocation="OverCenter" LabelLocation="Outside" LabelOffset="2" Foreground="#99FFFFFF" FontSize="10" FontFamily="Segoe UI Light" LabelRotationMode="None" Margin="0,20,0,0" >
+                                <telerik:RadialScale.Indicators>
+                                    <telerik:Marker Name="outputSpeed_2" IsAnimated="True" Style="{StaticResource EllipseMarkerStyle}" Value="750"/>
+                                </telerik:RadialScale.Indicators>
+                                <telerik:RadialScale.Ranges>
+                                    <telerik:GaugeRange Min="0" Max="750" Background="#FFDFDFDF" IndicatorBackground="#FF252526" StartWidth="0.12" />
+                                    <telerik:GaugeRange Min="750" Max="1750" Background="#FFC7C7C7" IndicatorBackground="#FF252526" StartWidth="0.12" />
+                                    <telerik:GaugeRange Min="1750" Max="3000" Background="#FFB1B1B1" IndicatorBackground="#FF252526" StartWidth="0.12" />
+                                </telerik:RadialScale.Ranges>
+                            </telerik:RadialScale>
+                        </telerik:RadRadialGauge>
+                    </Grid>
+                    <Grid Style="{StaticResource gaugeContainer}">
+                        <StackPanel Style="{StaticResource gaugeHeader}">
+                            <TextBlock Text="//" Style="{StaticResource monitorHeaderLabel_bench}" />
+                            <TextBlock Text="右输出转速" Style="{StaticResource monitorTitle}" />
+                        </StackPanel>
+                        <TextBlock x:Name="TCUInputSpeed_1" Text="9999" Style="{StaticResource gaugeValue}" />
+                        <TextBlock Text="RPM" Style="{StaticResource gaugeUnit}" />
+                        <telerik:RadRadialGauge x:Name="radGauge_speedInputRight" Width="120" Height="120" InnerBackground="Transparent" InnerBorderBrush="Transparent" OuterBackground="Transparent" OuterBorderBrush="Transparent">
+                            <telerik:RadialScale x:Name="radialScale_speedInputRight" Min="0" Max="3000" StartWidth="0.2" EndWidth="0.2" MajorTicks="8" MiddleTicks="1" MinorTicks="1" MajorTickLocation="OverCenter" MajorTickBackground="#FF252526" MajorTickRelativeHeight="0.2*" RangeLocation="OverCenter" LabelLocation="Outside" LabelOffset="2" Foreground="#99FFFFFF" FontSize="10" FontFamily="Segoe UI Light" LabelRotationMode="None" Margin="0,20,0,0" >
+                                <telerik:RadialScale.Indicators>
+                                    <telerik:Marker x:Name="TCUInputSpeed_2" IsAnimated="True" Style="{StaticResource EllipseMarkerStyle}" Value="750"/>
+                                </telerik:RadialScale.Indicators>
+                                <telerik:RadialScale.Ranges>
+                                    <telerik:GaugeRange Min="0" Max="750" Background="#FFDFDFDF" IndicatorBackground="#FF252526" StartWidth="0.12" />
+                                    <telerik:GaugeRange Min="750" Max="1750" Background="#FFC7C7C7" IndicatorBackground="#FF252526" StartWidth="0.12" />
+                                    <telerik:GaugeRange Min="1750" Max="3000" Background="#FFB1B1B1" IndicatorBackground="#FF252526" StartWidth="0.12" />
+                                </telerik:RadialScale.Ranges>
+                            </telerik:RadialScale>
+                        </telerik:RadRadialGauge>
+                    </Grid>-->
+                </StackPanel>
+            </Grid>
+            <!--侧栏-->
+            <StackPanel Grid.Row="1" HorizontalAlignment="Right" Width="210">
+                <StackPanel>
+                    <!--步骤-->
+                    <StackPanel>
+                        <!--侧栏步骤背景-->
+                        <Grid Height="37" Margin="0,0,0,0" >
+                            <Rectangle Fill="#FF264803" Height="5" RenderTransformOrigin="0.5,0.5"  VerticalAlignment="Bottom">
+                                <Rectangle.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                        <SkewTransform/>
+                                        <RotateTransform/>
+                                        <TranslateTransform X="-1.2" Y="-1.6"/>
+                                    </TransformGroup>
+                                </Rectangle.RenderTransform>
+                            </Rectangle>
+                            <Rectangle Fill="#ff335f07" Height="36" Width="4" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" >
+                                <Rectangle.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                        <SkewTransform AngleY="-39"/>
+                                        <RotateTransform Angle="-22"/>
+                                        <TranslateTransform X="-8.2" Y="-1.6"/>
+                                    </TransformGroup>
+                                </Rectangle.RenderTransform>
+                            </Rectangle>
+                            <Rectangle Fill="#ff60a917" VerticalAlignment="Top" Height="33" RenderTransformOrigin="0.5,0.5" >
+                                <Rectangle.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                        <SkewTransform AngleX="22"/>
+                                        <RotateTransform/>
+                                        <TranslateTransform X="-5.3" Y="-2.1"/>
+                                    </TransformGroup>
+                                </Rectangle.RenderTransform>
+                            </Rectangle>
+                            <Rectangle Fill="#ff60a917" VerticalAlignment="Top" HorizontalAlignment="Right" Height="32" Width="30" Margin="0,-2,0,0" />
+                            <Rectangle Fill="#FF264803" VerticalAlignment="Bottom" HorizontalAlignment="Right" Height="4" Width="30" Margin="0,0,0,2" />
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Style="{StaticResource sideBarTitle}" Text="当前测试运行步骤" Margin="0,-8,0,0"/>
+                                <Border Style="{StaticResource stepCounter}">
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <TextBlock x:Name="TatusNum" Style="{StaticResource curStep}" Text="0" />
+                                        <TextBlock Style="{StaticResource totalSteps}" Text="/" />
+                                        <TextBlock x:Name="TatusMaxNum" Style="{StaticResource totalSteps}" Text="100" />
+                                    </StackPanel>
+                                </Border>
+                            </StackPanel>
+                        </Grid>
+                        <TextBlock x:Name="TestStep" Style="{StaticResource curStepName}" Text="" Height="94" Foreground="Lime"/>
+                        <Rectangle Style="{StaticResource sideBarSeperator1}" />
+                        <Rectangle Style="{StaticResource sideBarSeperator2}" />
+                        <TextBlock x:Name="Step" Style="{StaticResource curStepName}" Text="" Height="184" Foreground="Yellow" />
+                    </StackPanel>
+                    <!--状态-->
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource sideBarTitle}" Text="当前状态"/>
+                        <TextBlock x:Name="Status" Style="{StaticResource testStatusLabel}" Text="就绪" FontSize="24"/>
+                        <TextBlock x:Name="Status_processing" Style="{StaticResource testStatusLabel_processing}" Text="测试中…" Visibility="Collapsed" FontSize="24"/>
+                        <TextBlock x:Name="Status_abnormal" Style="{StaticResource testStatusLabel_abnormal}" Text="异常" Visibility="Collapsed" FontSize="24"/>
+                        <TextBlock x:Name="Status_complete" Style="{StaticResource testStatusLabel_complete}" Text="完成" Visibility="Collapsed" FontSize="24"/>
+                        <Rectangle Style="{StaticResource sideBarSeperator1}" />
+                        <Rectangle Style="{StaticResource sideBarSeperator2}" />
+                    </StackPanel>
+                    <!--计时-->
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource sideBarTitle}" Text="测试总耗时"/>
+                        <StackPanel Orientation="Horizontal" Margin="0,17" HorizontalAlignment="Center">
+                            <!--时-->
+                            <Border Style="{StaticResource timerContainer}">
+                                <Grid>
+                                    <Rectangle Fill="#ff252526" Height="2" />
+                                    <TextBlock x:Name="TimeH" Style="{StaticResource timerLabel}" Text="00"/>
+                                </Grid>
+                            </Border>
+                            <TextBlock Style="{StaticResource timerColon}" Text=":" />
+                            <!--分-->
+                            <Border Style="{StaticResource timerContainer}">
+                                <Grid>
+                                    <Rectangle Fill="#ff252526" Height="2" />
+                                    <TextBlock x:Name="TimeM" Style="{StaticResource timerLabel}" Text="00"/>
+                                </Grid>
+                            </Border>
+                            <TextBlock Style="{StaticResource timerColon}" Text=":" />
+                            <!--秒-->
+                            <Border Style="{StaticResource timerContainer}">
+                                <Grid>
+                                    <Rectangle Fill="#ff252526" Height="2" />
+                                    <TextBlock x:Name="TimeS" Style="{StaticResource timerLabel}" Text="00"/>
+                                </Grid>
+                            </Border>
+                        </StackPanel>
+                        <Rectangle Style="{StaticResource sideBarSeperator1}" />
+                        <Rectangle Style="{StaticResource sideBarSeperator2}" />
+                    </StackPanel>
+                    <!--主油压设置-->
+                    <StackPanel Visibility="Collapsed">
+                        <TextBlock Style="{StaticResource sideBarTitle}" Text="主油压设置" />
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,17">
+                            <CheckBox IsChecked="True" Style="{StaticResource presureOption}">
+                                <TextBlock Style="{StaticResource presureLabel}" Text="Min"/>
+                            </CheckBox>
+                            <CheckBox IsChecked="True" Style="{StaticResource presureOption}">
+                                <TextBlock Style="{StaticResource presureLabel}" Text="Normal"/>
+                            </CheckBox>
+                            <CheckBox IsChecked="True" Style="{StaticResource presureOption}">
+                                <TextBlock Style="{StaticResource presureLabel}" Text="Max"/>
+                            </CheckBox>
+                        </StackPanel>
+                    </StackPanel>
+                    <Button Name="Star_Button" Content="开  始" Template="{DynamicResource ButtonControlTemplate--start}" FontSize="18" Foreground="#FFFFFFFF" Padding="0,-11,0,0" Visibility="Visible" Click="Star_Button_Click"  />
+                    <Button Name="Stop_Button" Content="中  止" Template="{DynamicResource ButtonControlTemplate--stop}" FontSize="18" Foreground="#FFFFFFFF" Padding="0,-11,0,0" Visibility="Collapsed" Click="Stop_Button_Click"/>
+                    <Button Name="Report_Button" Content="生成报告" Template="{DynamicResource ButtonControlTemplate--start}" FontSize="18" Foreground="#FFFFFFFF" Padding="0,-11,0,0" Visibility="Collapsed" Click="Report_Button_Click"   />
+
+                    <!--<Button Content="N400 dialog test" Margin="0,0,0,8" HorizontalAlignment="Left" />-->
+                </StackPanel>
+                <Rectangle Fill="#0CFFFFFF" Height="700" Width="1" HorizontalAlignment="Left" Margin="0,-630,0,0"/>
+            </StackPanel>
+            <!--系统信息-->
+            <!--<StackPanel VerticalAlignment="Center" Orientation="Horizontal" Grid.Row="2">
+                <Ellipse Fill="#FFc6c6c6" HorizontalAlignment="Left" Height="5" Width="5" Margin="8,0,5,0" VerticalAlignment="Center"/>
+                <TextBlock x:Name="DatatimeMsg" Text="17:55:14" FontFamily="Microsoft YaHei" FontSize="14" Foreground="#FF777777" VerticalAlignment="Center" Margin="0,0,15,0"/>
+                <TextBlock Text="自动预热开始启动自检，检测器返回值上下浮动4%，在正常范围内。" FontSize="14" x:Name="txtNotificationMsg" Foreground="#FFA0A0A0" VerticalAlignment="Center" />
+                <StackPanel x:Name="notificationLights" Orientation="Horizontal" HorizontalAlignment="Center" Width="644"/>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,6,30,4">
+                    <Image x:Name="SystemWarningLED" Stretch="Uniform" Width="33" Height="33" Source="/ModernUINavigationApp;component/Assets/led_default.png" Margin="0,0,4,0"/>
+                    <TextBlock Text="系统警报灯" Style="{StaticResource txt_stateLed}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,6,0,4">
+                    <Image Stretch="Uniform" Width="33" Height="33" Source="/ModernUINavigationApp;component/Assets/led_default.png" Margin="0,0,4,0"/>
+                    <TextBlock Text="测试警报灯" Style="{StaticResource txt_stateLed}"/>
+                </StackPanel>
+               
+            </StackPanel>-->
+            <Grid Height="45" VerticalAlignment="Stretch" Width="1400" Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="270"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <StackPanel Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                    <Rectangle Height="1" Fill="#16FFFFFF" HorizontalAlignment="Stretch" />
+                </StackPanel>
+                <Grid Grid.Column="0" Grid.Row="1">
+                    <StackPanel x:Name="notificationMsg" VerticalAlignment="Center" HorizontalAlignment="Left">
+                        <StackPanel  Height="42" VerticalAlignment="Center" Orientation="Horizontal">
+                            <Ellipse Fill="#FFc6c6c6" HorizontalAlignment="Left" Height="5" Width="5" Margin="8,0,5,0" VerticalAlignment="Center"/>
+                            <!--事件发生时间-->
+                            <TextBlock x:Name="SysTime" FontFamily="Microsoft YaHei" FontSize="24" Foreground="#FF777777" VerticalAlignment="Center" Margin="0,0,15,0" Height="42" Width="140"><Run Text="17:55:14"/><InlineUIContainer>
+                            	</InlineUIContainer></TextBlock>
+                            <!--<TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="告警：" Width="78" FontSize="24" Foreground="White"/>-->
+
+                            <!--<TextBlock Text="自动预热开始启动自检，检测器返回值上下浮动4%，在正常范围内。" FontSize="24" x:Name="txtNotificationMsg" Foreground="Red" VerticalAlignment="Center" Height="42" Width="741" FontWeight="Bold" />-->
+                            <!--事件内容描述-->
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+                <StackPanel Grid.Column="1" Grid.Row="1" x:Name="notificationLights" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,30,0">
+                        <Image x:Name="System_led" Stretch="Uniform" Width="33" Height="33" Source="/Assets/led_default.png" Margin="0,0,4,0"/>
+                        <TextBlock Text="系统警报灯" Style="{StaticResource txt_stateLed}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Image  x:Name="Test_Led" Stretch="Uniform" Width="33" Height="33" Source="/Assets/led_default.png" Margin="0,0,4,0"/>
+                        <TextBlock Text="测试警报灯" Style="{StaticResource txt_stateLed}"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

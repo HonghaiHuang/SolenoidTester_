@@ -1,0 +1,64 @@
+﻿<UserControl x:Class="SolenoidTester.group.Home"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+              xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+              xmlns:gif="http://wpfanimatedgif.codeplex.com"
+             xmlns:local="clr-namespace:SolenoidTester.group"
+             mc:Ignorable="d" 
+             d:DesignHeight="900" d:DesignWidth="1440">
+    <Grid >
+        <Border Margin="0,0,0,450">
+            <Border.Background>
+                <ImageBrush Stretch="None" ImageSource="/Assets/img_testIntro.png"/>
+            </Border.Background>
+            <Grid VerticalAlignment="Center">
+                <!--进入该页面时显示下列欢迎语，鼠标移动到测试项按键上该语句隐藏-->
+                <TextBlock Text="欢迎使用TEHCM测试系统，请选择测试方式" FontSize="28" Foreground="#FFFFFFFF" HorizontalAlignment="Center" Height="36" Margin="0,80,0,0" />
+                <Grid Height="220" Width="820">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="230" />
+                        <ColumnDefinition Width="590" />
+                    </Grid.ColumnDefinitions>
+                    <!--鼠标移动到测试项按键上显示下列图标-->
+                    <Image Stretch="None" Source="/Assets/ico_monitor.png" Visibility="Hidden" />
+                    <Grid Grid.Column="1" VerticalAlignment="Center">
+                        <!--鼠标移动到对应测试项按键上显示下列元素，离开后隐藏-->
+                        <StackPanel Name="intro_standard" Visibility="Hidden">
+                            <Rectangle Style="{StaticResource titleDecoration}" />
+                            <TextBlock Style="{StaticResource testIntroTxt}" Text="按照8个测试步骤顺序执行测试项，操作者尽可能少地干预测试。" />
+                        </StackPanel>
+                        <!--鼠标移动到对应测试项按键上显示下列元素，离开后隐藏-->
+                        <StackPanel Name="intro_special" Visibility="Hidden">
+                            <Rectangle Style="{StaticResource titleDecoration}" />
+                            <TextBlock Style="{StaticResource testIntroTxt}" Text="针对返修回来的变速箱进行测试，设定一个档位，电机加速或减速。" />
+                            <TextBlock Style="{StaticResource testIntroTxt}" Text="针对返修回来的变速箱进行测试，设定一个转速，TCU做+/-档操作。" />
+                        </StackPanel>
+                        <!--鼠标移动到对应测试项按键上显示下列元素，离开后隐藏-->
+                        <StackPanel Name="intro_manual" Visibility="Hidden">
+                            <Rectangle Style="{StaticResource titleDecoration}" />
+                            <TextBlock Style="{StaticResource testIntroTxt}" Text="操作者可以使用下位机5个输入自由调节转速、扭矩、档位、主油压及锁止油压。" />
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Border>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="220,370,220,100" Width="1000">
+
+            <Grid Style="{StaticResource testItemContainer}"  Width="500" Height="Auto" Margin="0"  >
+                <!--鼠标移动到对应测试项按键上显示下列小图标，离开后隐藏-->
+                <Image Name="marker1"  Stretch="None" Source="/Assets/ico_marker.png" VerticalAlignment="Top" HorizontalAlignment="Center" Visibility="Hidden"/>
+                <Button Content="标准测试" Template="{DynamicResource btn_standardTest}" FontSize="32" Foreground="#FFFFFFFF" Command="mui:LinkCommands.NavigateLink" CommandParameter="/group/TestInfoPage.xaml"/>
+
+            </Grid>
+            <Grid Style="{StaticResource testItemContainer}" Width="500" Height="Auto" Margin="0">
+                <!--鼠标移动到对应测试项按键上显示下列小图标，离开后隐藏-->
+                <Image Name="marker2"  Stretch="None" Source="/Assets/ico_marker.png" VerticalAlignment="Top" HorizontalAlignment="Center" Visibility="Hidden" />
+                <Button Content="手动测试" Template="{DynamicResource btn_manualTest}" FontSize="32" Foreground="#FFFFFFFF" Command="mui:LinkCommands.NavigateLink" CommandParameter="/group/Tests/ManualTesting.xaml"/>
+
+            </Grid>
+
+        </StackPanel>
+    </Grid>
+</UserControl>
